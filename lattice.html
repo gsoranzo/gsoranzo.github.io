@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+<script>sagecell.makeSagecell({"inputLocation": ".sage", linked:true});</script>
+<body>
+<head>
+      <title>Show lattices</title>
+</head>
+<p> <a href=index.html>Return to the main page</a> </p>
+<h2>Show lattices of given order</h2>
+
+<p>Click on Evaluate below to set up all the functions:</p>
+<div class="sage">
+  <script type="text/x-sage">
+from sage.plot.point import Point
+from random import randint
+from tabulate import tabulate
+from IPython.core.display import HTML
+
+
+def check(x,a,b,alpha=1):
+    L=x.parent()
+    return x^a*(1-x)^b==alpha
+
+def valab(x,facteur=1,intersect=1,intera=[0,10],interb=[0,10],number=None,maxdeg=None,maxi=None,alpha=1):
+    L=x.parent()
+    p=L.characteristic()
+    q=L.cardinality()
+    Liste=[]
+    if maxdeg!=None:
+        for s in range(0,maxdeg+1):
+            for t in range(0,s+1):
+                if number!=None:
+                    if len(Liste)>=number:
+                        return Liste
+                if check(x,s-t,t,alpha=alpha):
+                    if (s-t)%intersect==0 and t%intersect==0:
+                        Liste.append((facteur*(s-t),facteur*t))
+        return Liste
+    if maxi!=None:
+        intera=[0,maxi//facteur]
+        interb=[0,maxi//facteur]
+    for b in range(interb[0],interb[-1]+1):
+        for a in range(intera[0],intera[-1]+1):
+            if number!=None:
+                if len(Liste)>=number:
+                    return Liste
+            if check(x,a,b,alpha=alpha):
+                if a%intersect==0 and b%intersect==0:
+                    Liste.append((facteur*a,facteur*b))
+    return Liste
+
+def pointsab(x,facteur=1,intersect=1,intera=[0,10],interb=[0,10],maxi=None,alpha=1,color=(0,0,0)):
+    return point(valab(x,intera=intera,interb=interb,facteur=facteur,intersect=intersect,maxi=maxi,alpha=alpha),frame=False, gridlines="major",aspect_ratio=1,ticks=[1,1],size=40,fontsize=7,rgbcolor=color)
+
+def getColors(n):
+    color = []
+    for i in range(n):
+        color.append('#%06X' % randint(0, 0xFFFFFF))
+    return color
+
+def showLattOrder(o,p,typeLat='basic',maxi=None):
+    k=GF(p,modulus='primitive')
+    al=k.gen()
+    K.<X>=k[]
+    factorisation=cyclotomic_polynomial(o).change_ring(K).factor()
+    print("Factorisation du polynôme cyclotomique:")
+    print(cyclotomic_polynomial(o)," = ",factorisation)
+    pols=[pol[0] for pol in factorisation]
+    d=pols[0].degree()
+    if maxi==None:
+        maxi=min(p^d-1,50)
+    if typeLat=="decomposed":
+        n=gcd(o,p-1)
+        bet=al^((p-1)/n)
+        vals=[bet^q for q in range(n)]
+        vals.sort()
+        color=getColors(p)
+        colorTable=[['Color', 'alpha'],[''' <div style="background-color: '''+"#000000"+''' ; padding: 10px; border: 1px solid green;"> ''' ,1]]
+        for i in range(1,n):
+            colorTable+=[[''' <div style="background-color: '''+color[i]+''' ; padding: 10px; border: 1px solid green;"> ''',vals[i]]]
+        htmlTable=tabulate(colorTable,  headers='firstrow',tablefmt='html')
+        htmlTable=htmlTable.replace('&lt;', '<')
+        htmlTable=htmlTable.replace('&gt;', '>')
+        htmlTable=htmlTable.replace('&quot;', '"')
+        htmlTable="""<style> html { -webkit-print-color-adjust: exact; } </style>""" + htmlTable
+        #print(htmlTable)
+        display(HTML(htmlTable))
+    for pol in pols:
+        print("Lattice for polynomial ",pol)
+        L.<x>=GF(p^d,modulus=pol)
+        graph=pointsab(x,maxi=maxi)
+        if typeLat=='decomposed':   
+            for i in range(1,n):
+                graph+=pointsab(x,maxi=maxi,alpha=vals[i],facteur=1,color=color[i])
+
+        show(graph)
+  </script>
+</div>
+
+<p>Now you can below draw all the lattice for a given order:</p>
+<div class="sage">
+  <script type="text/x-sage">
+"""
+First parameter: the order
+Second parameter: the prime number p
+Third parameter: 'decomposed' or 'basic'
+Fourth parameter: size of the graphic
+"""
+showLattOrder(24,7,typeLat='decomposed',maxi=24)
+  </script>
+</div>
+
+<p> <a href=index.html>Return to the main page</a> </p>
+
+</body>
+</html>
