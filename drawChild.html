@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+<script>sagecell.makeSagecell({"inputLocation": ".sage", linked:true});</script>
+<body>
+<head>
+      <title>draw Children drawings</title>
+</head>
+<p> <a href=research.html>Return to the research page</a> </p>
+<h2>Plot a given children drawing</h2>
+
+<p>Click on Evaluate below to set up all the functions:</p>
+<div class="sage">
+  <script type="text/x-sage">
+def solvealpha(Exp,alpha):
+    S=solve(Exp==alpha,z,to_poly_solve=true)
+    return [(CC)(CDF(s.rhs())) for s in S]
+
+def traceSquelet(f,xx=None,yy=None, **opt):
+    z = f.variables()[0]
+    x, y = SR.var('x, y')
+    F = fast_callable(f.subs({z: x + I*y}), vars=[x, y], domain=CDF)
+    P = lambda x, y: F(x, y).real()
+    Q = lambda x, y: F(x, y).imag()
+    op = {'region': lambda x, y: 0 <= P(x, y) <= 1,
+          'plot_points': 129, 'color': 'black'}
+    for k, v in op.items():
+        if k not in opt:
+            opt[k] = v
+    p = implicit_plot(Q, xx, yy, **opt)
+    return p
+
+def traceChild(f,xx=None,yy=None,plot_points_fill_blank=50,
+               eps_fill_blank=1/16,space_around=0.1,fill_blank=False,
+              plot_points=129,size_vertices=70,linewidth=None,vertices=True,
+              axes=False):
+    r"""
+    Return the preimage of the unit interval under this map.
+
+    INPUT:
+    
+    - ``f`` -- a complex map as a symbolic expression
+    
+    The following inputs must all be passed in as named parameters:
+
+    - ``xx``, ``yy`` -- tuple of two float numbers (default: `None`); the range of ``x`` and ``yy`` where to plot.
+                        If they are `None` the function adjust the graph to contain all the preimage.
+                        
+    - ``space_around`` -- float number; if ``xx`` or ``yy`` are ``None`` it is the space around the preimage the be shown.
+
+    - ``plot_points`` -- integer (default: `129`); number of points to plot in each direction of the grid.
+    
+    -- `linewidth`` -- integer (default: None); if a single integer all levels will be of the width given, otherwise the levels will be plotted with the widths in the order given.
+
+    -- `vertices`` -- boolean (default: True); if True, show vertices i.e. the preimage of 0 with black vertices and the preimage of 1 with white vertices.
+    
+    -- `size_vertices` -- integer (default: 70); the size of the vertices, if `vertices` is True.
+    
+    -- `fill_blank`` -- boolean (default: True); if True, make more precise the plot around the vertices.
+                        It can be very long if there are many vertices. Another solution is to make bigger vertices with the parameter `size_vertices`.
+    
+    -- `eps_fill_blank` -- float number (default: 1/16); if `fill_blank` equals True, it is the space around each vertices to be more precise.
+
+    -- plt_points_fill_blank` -- integer (default: 50); if `fill_blank` equals True, it is the number of the number of points in each direction of the grid for the plot of around each vertices.
+
+    OUTPUT: the preimage of the unit interval under this map.
+
+    EXAMPLES:
+
+    This example illustrates the basic use of the function, here we draw a Belyi children drawing ::
+
+        sage: z=var('z'); a=3; b=5
+        sage: f=(a+b)^(a+b)/(a^a*b^b)*z^a*(1-z)^b
+        sage: traceChild(f,plot_points=200)
+
+    Now an other Belyi drawing ::
+
+        sage: z=var('z'); a=5; b=7
+        sage: f=(a+b)^(a+b)/(a^a*b^b)*z^a*(1-z)^b
+        sage: traceChild(f)
+
+    Now a binomial drawing ::
+
+        sage: n=4
+        sage: g=prod((z-k)^((-1)^k*binomial(n,k)) for k in range(n+1))
+        sage: f=g/(g-1)
+
+        sage: traceChild(f,space_around=0.5)
+        
+    An other binomial drawing ::
+    
+        sage: n=6
+        sage: g=prod((z-k)^((-1)^k*binomial(n,k)) for k in range(n+1))
+        sage: f=g/(g-1)
+
+        sage: traceChild(f,plot_points=1000,space_around=1,size_vertices=80,linewidth=0.5)
+
+    .. NOTE::
+
+        This function uses `implicite_plot` with the option `region`to obtain these plots.
+
+    .. TODO::
+
+        Solve the problem encounter when the map is a polynomial whith really big degree.
+        
+    .. PLOT::
+    
+        sage: z=var('z'); a=5; b=7
+        sage: f=(a+b)^(a+b)/(a^a*b^b)*z^a*(1-z)^b
+        sage: traceChild(f)
+        
+    REFERENCES:
+    
+        The code here comes from peoples who help me on askSage. Thanks to them. Here is the link: `link name <https://ask.sagemath.org/question/54765/implicit-plot-with-complex-function/>`_
+    
+    """
+    whvl=solvealpha(f,1)
+    blvl=solvealpha(f,0)
+    #mdvl=solvealpha(f,0.5)
+    alvl=whvl+blvl#+mdvl
+    if xx==None:
+        xvl=[z.real() for z in alvl]
+        xmin=min(xvl)
+        xmax=max(xvl)
+        xx=(xmin-space_around,xmax+space_around)
+    if yy==None:
+        yvl=[z.imag() for z in alvl]
+        ymin=min(yvl)
+        ymax=max(yvl)
+        yy=(ymin-space_around,ymax+space_around)
+        
+    draw=traceSquelet(f,xx,yy,plot_points=plot_points,linewidth=linewidth)
+    whCoords=[(z.real(),z.imag()) for z in whvl]
+    blCoords=[(z.real(),z.imag()) for z in blvl]
+    Coords=whCoords+blCoords
+    if fill_blank==True:
+        draw = sum((traceSquelet(f, xx=(k - epsil, k + epsil), yy=(q-epsil,q+epsil), 
+                                 plot_points=plot_points_fill_blank,linewidth=linewidth)
+                    for (k,q) in Coords for epsil in [eps_fill_blank]), draw)
+    if vertices==True:
+        whpt=points(whvl,markeredgecolor='black',size=size_vertices,rgbcolor='white',zorder=20)
+        blpt=points(blvl,markeredgecolor='black',size=size_vertices,rgbcolor='black')
+        P=draw+whpt+blpt
+    else:
+        P=draw
+    if axes==False:
+        P.axes_color('white')
+        P.fontsize(0)
+    P.show()
+  </script>
+</div>
+
+<p>Now you can below draw for example a Belyi covering:</p>
+<div class="sage">
+  <script type="text/x-sage">
+z=var('z'); a=5; b=7
+f=(a+b)^(a+b)/(a^a*b^b)*z^a*(1-z)^b
+
+traceChild(f,plot_points=200)
+  </script>
+</div>
+
+<p>Here is a "binomial drawing":</p>
+<div class="sage">
+  <script type="text/x-sage">
+n=4
+g=prod((z-k)^((-1)^k*binomial(n,k)) for k in range(n+1))
+f=g/(g-1)
+
+traceChild(f,space_around=0.5)
+  </script>
+</div>
+
+<p>Here a bigger "binomial drawing":</p>
+<div class="sage">
+  <script type="text/x-sage">
+n=5
+g=prod((z-k)^((-1)^k*binomial(n,k)) for k in range(n+1))
+f=g/(g-1)
+
+traceChild(f,plot_points=300,space_around=0.8,size_vertices=180)
+  </script>
+</div>
+
+<p>Et encore plus grand:</p>
+<div class="sage">
+  <script type="text/x-sage">
+n=6
+g=prod((z-k)^((-1)^k*binomial(n,k)) for k in range(n+1))
+f=g/(g-1)
+
+traceChild(f,plot_points=1000,space_around=1,size_vertices=80,linewidth=0.5)
+  </script>
+</div>
+
+
+
+<p> <a href=research.html>Return to the research page</a> </p>
+
+</body>
+</html>
