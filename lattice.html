@@ -2,10 +2,19 @@
 <html>
 <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
 <script>sagecell.makeSagecell({"inputLocation": ".sage", linked:true});</script>
+
+<!-- <script type="text/javascript" charset="utf-8" src="
+            https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js>
+</script>
+-->
+
 <body>
+
 <head>
       <title>Show lattices</title>
 </head>
+
+
 <p> <a href=research.html>Return to the research page</a> </p>
 <h2>Show lattices of given order</h2>
 
@@ -98,7 +107,11 @@ def showLattOrder(o,p,typeLat='basic',maxi=None):
   </script>
 </div>
 
-<p>Now you can below draw all the lattice for a given order:</p>
+<p>Now you can below draw all the lattice for a given order:<br>
+How to use it?<br>
+In the 'basic' case (see the third parameter below), the polynomial $X^a(1-X)^b-1$ will have a factor of a given order if one of the below lattice contain the point $(a,b)$.<br>
+In the 'decomposed' case (with colors) it is the same thing but with the polynomial $X^a(1-X)^b-\alpha$.
+</p>
 <div class="sage">
   <script type="text/x-sage">
 """
