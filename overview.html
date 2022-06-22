@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+<script>sagecell.makeSagecell({"inputLocation": ".sage", linked:true});</script>
+<!-- <script type="text/javascript" charset="utf-8" src="
+            https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js>
+</script>
+-->
+
+
+<body>
+<head>
+      <title>Gabriel Soranzo - overview of research (french)</title>
+
+
+</head>
+<p><a href=research.html>Return to the research page</a></p>
+<h2>Overview of researchs</h2>
+
+<p>Dans mon <a href=https://zenodo.org/record/6634769/files/memoire.pdf?download=1>mémoire de master</a> j'ai appris auprès de M. Zapponi comment adapter la notion de modèle aux revêtements et plus spécifiquement au dessins d'enfants dans le plan. Dans ce cas tout est très simple car on a pas à rechercher de modèle pour le domaine de départ qui est ici la droite affine. Par exemple dans le cas d'un dessin rationnel (ie dans $\mathbb{Q}_p$) on  pourra chasser les dénominateurs pour obtenir un dessin à coefficient  dans $\mathbb{Z}_p$. Je me suis plus particulièrement intéressé aux arbres qui correspondent algébriquement aux polynômes de Shabat.</p>
+
+<p>Une fois que l'on a un modèle on peut comme d'habitude réduire notre modèle modulo $p$. On dira que le modèle se réduit bien si ses sommets ne collapsent pas et qu'il n'y a pas d'abaissement de degré. Pour observer cela l'outil essentiel est le polygone de Newton de notre modèle qui nous donne les valuations des racines en fonction des pentes de son graphe: on observe ainsi directement la bonne ou mauvaise réduction sur le polygone. On dira qu'un dessin se réduit bien (mod $p$) lorsqu'il a un modèle qui se réduit bien.</p>
+
+<p>A l'aide des polygones de Newton on peut facilement définir ce que l'on peut appeler le modèle fondamentale de l'arbre. L'intérêt de ce modèle est que l'arbre aura une bonne réduction si et seulement si il a bonne réduction dans ce modèle. Dans mon mémoire de Master j'ai démontré qu'un arbre à ramifications modérées se réduit bien si et seulement si une des fibres singulières de son modèle fondamental se réduit bien: concrêtement, par exemple, si les sommets blancs ne collapsent pas (on a pas à regarder les sommets noirs).</p>
+
+<p>Dans l'article Specialization of polynomial covers of prime degree de M. Zapponi est présentée la notion de modèle semi-stable minimal pour les dessins d'enfants. C'est une adaptation des idées de Deligne-Mumford, et il en énonce une construction très simple dans le cas des revêtements polynomiaux et donc pour les arbres. Cela consiste en gros en un grand recollement de tous les modèles possibles. Pour étudier la réduction des dessins on peut se limiter à étudier le modèle du domaine de ce modèle (le modèle est une fonction et l'on considère son ensemble de départ) qui est lui-même un modèle de la droite affine. Cela dessine des graphes comme on peut en voir dans ce <a target="_blank" rel="noopener noreferrer" href=https://gabrielSoranzo.pythonanywhere.com>lien</a>. En fait ce modèle de la droite affine traduit les proximités p-adiques des sommets de l'arbre et la connaissance du modèle permet d'obtenir des informations précieuses sur les arbres.</p>
+
+<p>J'ai alors utilisé cet outil sur une famille d'arbres bien connu: les "arbres de Belyi" $X^a(1-X)^b$ qui sont les arbres utilisés dans le célèbre article de M. Belyi. J'ai obtenu la description du modèle minimal de tous les arbres de cette famille, en fonction des propriétés arithmétiques des exposants a et b. C'est l'objet de mon premier <a href=https://zenodo.org/record/6427559/files/redBelEn.pdf?download=1>article</a>. Il y a trois cas de figures: $v_p(a)\neq v_p(b)$, $v_p(a)=v_p(b)&lt;v_p(a+b)$ et enfin $v_p(a)=v_p(b)=v_p(a+b)$. La page <a target="_blank" rel="noopener noreferrer" href=https://gabrielSoranzo.pythonanywhere.com>suivante</a> permet de tracer ces différents modèles.</p>
+
+Les modèles permettent également d'étudier les proximités $p$-adiques des sommets des arbres et aident à déterminer quelle sont les classes de conjugaison du dessin sous l'action du groupe de Galois absolu de $\mathbb{Q}_p$. C'est l'objet d'un second article en préparation. J'espère qu'il me permettra à terme de comprendre l'action local du groupe de Galois sur les sommets de l'arbre et d'en déduire l'action globale.<br>
+
+<p>Afin d'étudier ces classes de conjugaison j'ai eu besoin de factoriser dans $\mathbb{F}_p$ les polynômes du type $X^a-1$ (connu), $X^a(1-X)^b-1$ et plus généralement les $X^a-\alpha$ et $X^a(1-X)^b-\alpha$. Je suis ainsi arrivé à une approche, certes pour l'instant pas efficace algorithmiquement, mais peut-être originale, à l'aide de réseaux. La page <a href=lattice.html>suivante</a> permet de tracer ces réseaux. Une explication détaillé du cas $X^a(1-X)^b-1$ est disponible dans cette <a href=https://zenodo.org/record/6634838/files/BelyiFactFinitFieldPresentation.pdf?download=1>présentation</a>. Le cas $X^a-\alpha$, très facile n'est pas encore rédigée.</p>
+
+<p><a href=research.html>Return to the research page</a></p>
+</body>
+</html>
