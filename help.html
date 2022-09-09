@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang='fr'>
+	<head>
+		<meta charset="utf-8">
+		<title>Toutes les commandes à retenir</title>
+		<meta name="Description" content="Document contenant les aides à retenir">
+	</head>
+	<body>
+        <h1> TOUTES LES COMMANDES A RETENIR </h1>
+
+        <h3> convert <h3>
+        <blockquote>
+            <ul>
+                <li>
+                    Convertir un png en icone:<br>
+                    convert <your-image-here> -define icon:auto-resize=256,64,48,32,16 favicon.ico
+                </li>
+            </ul>
+        </blockquote>
+
+        <h3> Créer un pdf en ligne de commande: </h3>
+        <blockquote>
+            Commande:<br>
+
+            echo "Hello world" | a2ps -B -o ficher.ps<br>
+            ps2pdf fichier.ps fichier.pdf
+        </blockquote>
+
+        <h3> feh </h3>
+        <blockquote>
+            Pour visualiser rapidement des images
+        </blockquote>
+
+        <h3> find </h3>
+        <blockquote>
+            <ul>
+                <li> 
+                    Rechercher des fichiers par leur nom et executer une commande pour chacun:<br>
+                    find . -name '*.pdf' -type f -exec mv {} ./ \;
+                </li>
+                <li>
+                    Rechercher des fichiers ne vérifiant pas une condition de nom:<br>
+                    find . -not -name '*.pdf'
+                </li>
+            </ul>
+        </blockquote>
+
+        <h3> ffmpeg </h3>
+        <blockquote>
+            <ul>
+                <li>
+                    Compression de vidéos:<br>
+                    ffmpeg -i vidéo.mp4 -vcodec h264 -acodec aac vidéo_réduite.mp4
+                </li>
+                <li>
+                    Wav -> mp3:<br>
+                    ffmpeg -i input.wav -vn -ar 44100 -ac 2 -b:a 192k output.mp3
+                </li>
+            </ul>
+        </blockquote>
+        
+        <h3> git </h3>
+        <blockquote>
+            <ul>
+                <li>
+                    Pour voir la liste des fichiers trackés:<br>
+                    git ls-tree -r master --name-only
+                </li>
+                <li>
+                    Comparer la copie local et le distant:<br>
+                    git diff @{upstream}
+                </li>
+                <li>
+                    Gitifier un dossier:<br>
+                    dans le dossier en question: git init<br>
+                    pour les fichiers que l'on veut gitifier: git add ...<br>
+                    git commit -m "Premier commit"<br>
+                    git remote add origin https://github.com/...<br>
+                    git push --set-upstream origin master<br>
+                    A ce niveau il faudra entrer le mot de pass par Token (les tokens se créent via les settings du compte - et non les settings du projet)
+                </li>
+                <li>
+                    Pour cloner un git personnel:<br>
+                    Inutile de créer un dossier pour réceptionner le git: la commande git clone créera un sous-dossier<br>
+                    Commande: git clone https://GabrielSoranzo@github.com/...<br>
+                    Là il faudra rentrer le token.
+                </li>
+            </ul>
+        </blockquote>
+
+        <h3> jupyter </h3>
+        <blockquote>
+            <ul>
+                <li>
+                    Changer de thème:<br>
+                    jt -t monokai -f fira -fs 10 -nf ptsans -nfs 11 -N -kl -cursw 2 -cursc r -cellw 95% -T
+                </li>
+            </ul>
+        </blockquote>
+
+        <h3> latex </h3>
+        <blockquote>
+            <ul>
+                <li>
+                    Deux figures côte à côte<br>
+                    \begin{figure*}[htp]<br>
+                    \centering<br>
+                    \subfigure{\input{ExMod.pgf}}<br>
+                    \subfigure{\input{ExMod2.pgf}}<br>
+                    \end{figure*}<br>
+                </li>
+                <li>
+                    flèche sur le côté des équations:<br>
+                    \usepackage{witharrows}<br>
+                    \begin{align*}<br>
+                    \setlength{\jot}{10pt}<br>
+                    \begin{WithArrows}<br>
+                        P(x)=0 &\iff (x+2)(\Q)=0\\<br>
+                        &\iff x=-2\Arrow[xoffset=+0.5cm]{$\Delta=1+4=5$}\\<br>
+                        &\iff x=-2<br>
+                    \end{WithArrows}<br>
+                    \end{align*}<br>
+                </li>
+
+
+                </li>
+                <li>
+                    enumerate entourés:<br>
+                    \usepackage{enumitem}<br>
+                    \usepackage{tikz}<br>
+                    \newcommand*\circled[1]{\tikz[baseline=(char.base)]{<br>
+                    \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}<br>
+                    Ensuite:<br>
+                    \begin{enumerate}[label=\protect\circled{\arabic*}]<br>
+            </li>
+                <li>
+                    Arc de cercle:<br>
+                    \usepackage{yhmath}<br>
+                    $\wideparen{AB}$
+                </li>
+                <li>
+                    Accolade en dessous:<br>
+                    \underbrace{aaaa}_{bbb}
+                </li>
+                <li>
+                    Ensembles R,N, Q,...<br>
+                    \usepackage{amsfonts} <br>
+                    \mathbb{R}
+                </li>
+                <li>
+                    Les références à des endroits du texte:<br>
+                    à l'endroit que l'on veut référencer: \label<br>
+                    à l'endroit où l'on veut faire référence: \ref<br>
+                </li>
+                <li>
+                    Barre de fraction oblique<br>
+                    \usepackage{xfrac}<br>
+                    \sfrac{1}{2}<br>
+                </li>
+                <li>
+                    Muli-colonnes:<br>
+                    usepackage{multicol}<br>
+                    \begin{multicols}{2}<br>
+                    ...
+                    \end{multicols}<br>
+                    Pour rompre une colonne:<br>
+                    \vfill\null<br>
+                    \columnbreak
+                </li>
+                <li>
+                    Lien hypertex:<br>
+                    \usepackage{hyperref}<br>
+                    \url{...}
+                </li>
+                <li>
+                    qrcode: attention pb avec babel<br>
+                    \usepackage{qrcode}<br>
+                    \qrcode{...}
+                </li>
+                <li>
+                    Gesion des marges:<br>
+                    \usepackage[hmargin=1cm,vmargin=0.25cm]{geometry}
+                </li>
+                <li>
+                    Pas d'espaces au début des paragraphes: \setlength{\parindent}{0pt}
+                </li>
+                <li>
+                    Pour tracer un courbe:<br>
+                    \usepackage{pgfplots}<br>
+                    \begin{tikzpicture}<br>
+                    \begin{axis} [axis lines=center]<br>
+                    \addplot [domain=0:21, smooth, thick] { 2*(1-exp(-x/3)) };<br>
+                    \addplot [domain=0:21] {2};<br>
+                    \end{axis}<br>
+                    \end{tikzpicture}<br>
+                </li>
+                <li>
+                    Pour biffer en mode mathématique:<br>
+                    \usepackage{cancel}<br>
+                    Pour biffer: \cancel{...}<br>
+                    Pour faire un croix: \xcancel{...}<br>
+                </li>
+                <li>
+                    Pour taper du code source:<br>
+                    \usepackage{listings}<br>
+                    \begin{lstlisting}[language=Python,basicstyle=\tiny]<br>
+                    ...<br>
+                    \end{lstlisting}
+                </li>
+                <li>
+                    Multiples alignements:<br>
+                    \usepackage{amsmath}<br>
+                    \begin{alignat}{3}<br>
+                     blacla & aa && bb<br>
+                    ...<br>
+                    \end{alignat}<br>
+                    Attention aux alignements: rlrlrlrl...
+                </li>
+                <li>
+                    Lignes multiples en indices:<br>
+                    \sum_\substack{i=0 \\ i\neq 4}
+                </li>
+                <li>
+                    Pour les circuits électriques:<br>
+                    Exemple d'un circuit RC:<br>
+                    \usepackage[european, straightvoltages, RPvoltages]{circuitikz}<br>
+                    \begin{circuitikz}<br>
+                    \draw (0,0) to [vsource,v_=$v_e(t)$] (0,3);<br>
+                    \draw (0,3) to [R,l_=R,v^=$v_R(t)$,i_=$i(t)$] (3,3);<br>
+                    \draw (3,3) to [C,l_=C,v^=$v_C(t)$] (3,0);<br>
+                    \draw (3,0) -- (0,0);<br>
+                    \end{circuitikz}<br>
+                </li>
+            </ul>
+        </blockquote>
+
+        <h3> matplotlib </h3>
+        <blockquote>
+            <ul>
+                <li>
+                    Changer le grosseur du point avec plt.plot:<br>
+                    markersize=...
+                </li>
+                <li>
+                    Pas d'affichage des axes:<br>
+                    plt.axis('off')
+                </li>
+                <li>
+                    Texte avec rotation<br>
+                    plt.text(..., rotation=angle en degré)
+                </li>
+                <li>
+                    Equal aspect ration:<br>
+                    plt.axis('equal')
+                </li>
+                <li>
+                    export to Latex:<br>
+                    import matplotlib.pyplot as plt<br>
+                    import matplotlib<br>
+                    matplotlib.rcParams.update({<br>
+                        "pgf.texsystem": "pdflatex",<br>
+                        'font.family': 'serif',<br>
+                        'text.usetex': True,<br>
+                        'pgf.rcfonts': False,<br>
+                    })<br>
+                    Ensuite:<br>
+                    plt.savefig("circle.pgf")<br>
+                    Dans le fichier latex:<br>
+                    \usepackage{tikz}<br>
+                    \input(circle.pgf)
+                </li>
+                <li>
+                    Cercle transparent:<br>
+                    from matplotlib.colors import colorConverter<br>
+                    fc = colorConverter.to_rgba('white', alpha=0)<br>
+                    circle1 = plt.Circle((0, 0), 1, ec='k', fc=fc)<br>
+                    plt.gca().add_patch(circle1)<br>
+                </li>
+                <li>
+                    Arc de cercle:<br>
+                    import matplotlib.patches as ptch<br>
+                    angle=ptch.Arc((0,0),0.5,0.5,angle=0,theta1=0,theta2=angledeg)<br>
+                    plt.gca().add_patch(angle)<br>
+                </li>
+                <li>
+                    Une flèche en arc de cercle:<br>
+                    arrow = ptch.FancyArrowPatch( (1.2*cos(-1.0), 1.2*sin(-1.0)), (1.2*cos(-0.5), 1.2*sin(-0.5)), connectionstyle="arc3,rad=.2", arrowstyle="Simple, tail_width=0.5, head_width=4, head_length=8" )<br>
+                    plt.gca().add_patch(arrow)<br>
+                </li>
+                <li>
+                    types de lignes: ':' pour pointillés
+                </li>
+            </ul>
+        </blockquote>
+
+        <h3> neovim </h3>
+        <blockquote>
+            <ul>
+                <li>
+                    Lancer une commande du shell: :!
+                </li>
+                <li>
+                    Lancer un explorateur de fichier: :Ex<br>
+                    Attention cela clos le split courant
+                </li>
+                <li>
+                    add line and go in insert mode: o ou O selon avant ou après la ligne courante.
+                </li>
+                <li>
+                    delete up to line number: d126G<br>
+                    indent up to line: >126G
+                </li>
+                <li>
+                    yank complet line: yy
+                </li>
+                <li>
+                    delete end of line: D
+                </li>
+                <li>
+                    Copier/couper/coller en mode visuel: y/d/p
+                </li>
+                <li>
+                    Indenter une ligne en mode commande: ><br>
+                    Indenter 5 lignes en mode commande: 5>>
+                </li>
+                <li>
+                    Aller au début du fichier: gg
+                    Aller à la fin du fichier: G
+                </li>
+                <li>
+                    Aller au dégut de la ligne: 0
+                    Aller à la fin de la ligne: $
+                </li>
+                <li>
+                    Fermer tous les splits sauf le courant: Ctrl+w puis o<br>
+                    Split vertical: Ctrl+w puis v<br>
+                    Split horizontal: Crtl+w puis s<br>
+                </li>
+                <li>
+                    Fichier de configuration: dans ~/.config/nvim/init.vim
+                </li>
+                <li>
+                    Plugin manager: il y en a plusieurs -> voir sur vimawesome.com les différents<br>
+                    J'utilise VimPlug<br>
+                    On écrit Plug ... dans init.vim<br>
+                    Ensuite: :PlugInstall
+                </li>
+                <li>
+                    Snippet dans vim:<br>
+                    J'utilise UltiSnips<br>
+                    Editer un type de fichier pour lequel on veut faire un snippet<br>
+                    Taper alors :UltiSnipsEdit<br>
+                    Bon tuto: <a href="https://developpaper.com/vim-code-snippet-plug-in-ultisnips-usage-tutorial/">Lien developpaper.com</a>
+            </ul>
+        </blockquote>
+
+
+
+        <h3> pastel </h3>
+        <blockquote>
+            Outil pour choisir des couleurs
+            <ul>
+                <li>
+                    pastel random: choix aléatoire de couleurs
+                </li>
+            </ul>
+        </blockquote>
+
+        <h3> qpdf </h3>
+        <blockquote>
+            Outil que j'utilise pour rassembler plusieurs fichier pdf <br>
+
+            Commande: <br>
+
+            qpdf --empty --pages *.pdf -- out.pdf
+        </blockquote>
+
+        <h3> Jupyter </h3>
+        <blockquote>
+            <ul>
+                <li>
+                    Hide/show header:<br>
+                    Ctrl+H
+                </li>
+            </ul>
+        </blockquote>
+
+        <h3> ranger </h3>
+        <blockquote>
+            File explorer in terminal mode.
+            <ul>
+                <li>
+                    delete: F8
+                </li>
+                <li>
+                    mkdir: F7
+                </li>
+                <li>
+                    rename: cw
+                </li>
+                <li>
+                    Modification des associations: dans le fichier ~/.config/ranger/rifle.conf
+                </li>
+            </ul>
+        </blockquote>
+
+        <h3>rm</h3>
+        <blockquote>
+            <ul>
+                <li>
+                    Suppression d'un dossier:<br>
+                    rm -rf dossier_a_supprimer
+                </li>
+                <li>
+                    Suppression de tous les dossiers:<br>
+                    rm -rf *
+                </li>
+            </ul>
+        </blockquote>
+
+        <h3>sage</h3>
+        <blockquote>
+            <ul>
+                <li>
+                    Développement de Taylor<br>
+                    Ex: taylor(sin(x),x,0,3)
+                </li>
+            </ul>
+        </blockquote>
+
+        <h3> trans </h3>
+        <blockquote>
+            Pour traduire
+        </blockquote>
+
+
+        <h3> vimtex </h3>
+        <blockquote>
+            <ul>
+                <li>
+                    LaTeX clean: \lc
+                </li>
+                <li>
+                    Table of content: \lt
+                </li>
+                <li>
+                    Lancer la visualisation externe: \lv
+                </li>
+                <li>
+                    Lancer la compilation en mode continue: \ll
+                </li>
+                <li>
+                    Voir les erreurs de compilations: \le
+                </li>
+            </ul>
+        </blockquote>
+
+        <h3> winget </h3>
+        <blockquote>
+                <ul>
+                    <li>
+                        Update all in silent:<br>
+                        winget upgrade --all -h
+                    </li>
+                </ul>
+        </blockquote>
+
+        <h3> wsl </h3>
+        <blockquote>
+            <ul>
+                <li>
+                    Redémmarer tous les wsl: wsl --shutdown
+                </li>
+            </ul>
+        </blockquote>
+
+        <h3> zathura </h3>
+        <blockquote>
+            <ul>
+                <li>
+                    Inversion des couleurs: Ctrl+r
+                </li>
+            </ul>
+        </blockquote>
+
+
+	</body>
+</html>
