@@ -468,6 +468,40 @@
             </ul>
         </blockquote>
 
+	<h3> virtualenv </h3>
+	<blockquote>
+		<ul>
+			<li>
+				Créer un environnement virtual: virtualenv venv
+			</li>
+			<li>
+				Créer un environnement virtuel avec une version déterminée de Python: virtualenv -p /usr/bin/python2.7 venv
+			</li>
+			<li>
+				Pour utiliser l'environnement: source venv/bin/activate
+			</li>
+			<li>
+				Pour arréter d'utiliser un environnement: deactivate
+			</li>
+			<li>
+				Pour récupérer l'ensemble des bibliothèques installée: pip freeze > requirements.txt
+			</li>
+			<li>
+				Pour réinstaller les bibliothèques à partir d'un fichier: pip install -r requirements.txt
+			</li>
+			<li>
+				Ajouter un noyau Jupyter à partir d'un environnement:<br>
+				pip install --user ipykernel<br>
+				python -m ipykernel install --user --name=myenv
+			</li>
+			<li>
+				Supprimer un noyau Jupyter:<br>
+				jupyter kernelspec list<br>
+				jupyter kernelspec uninstall myenv
+			</li>
+		</ul>
+	</blockquote>
+
         <h3> winget </h3>
         <blockquote>
                 <ul>
