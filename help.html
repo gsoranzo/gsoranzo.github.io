@@ -61,6 +61,34 @@
         <h3> git </h3>
         <blockquote>
             <ul>
+		<li>
+		    Voir <a href="https://gist.github.com/xirixiz/b6b0c6f4917ce17a90e00f9b60566278">ici</a> pour des détails.<br>
+		    Pour fonctionner avec un système de clés:<br>
+		    Se place dans ~/.ssh et générer la clé: ssh-keygen -t rsa -C "your_email@example.com"<br>
+		    Les phrases secrètes permettent de sécuriser l'utilisation locale (compromission du poste)<br>
+		    Copier la clé publique dans git: cat le_nom_de_ma_cle.pub | xclip -sel clip<br>
+		    Ajouter la clé publique dans l'interface git en ligne, via les Settings: <a href="https://docs.github.com/fr/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account?tool=webui">lien</a><br>
+		    Tester la clé: ssh -T git@github.com
+		</li>
+		<li>
+		    Voir <a href="https://gist.github.com/rahularity/86da20fe3858e6b311de068201d279e3">ici</a> pour des détails.<br>
+		    Pour fonctionner avec plusieurs compte et avec des clés:<br>
+		    Comme ci-dessus, générer les différentes clés pour chaque compte et ajouter les clés publiques dans l'interface web<br>
+		    Démarrer éventuellement l'agent ssh en deamon: eval "$(ssh-agent -s)"<br>
+		    Ajouter les clés privées dans l'agent: ssh-add ~/.ssh/ma_clé_privé<br>
+		    Créer un fichier ~/.ssh/config s'il n'existe pas déjà avec comme contenu:<br>
+     		    Host nom-qcq-descriptif-du-compte<br>
+          	    <dd>HostName github.com<br>
+          	    <dd>User git<br>
+          	    <dd>IdentityFile ~/.ssh/ma_cle_privée<br>
+		    <dd>IdentitiesOnly yes<br>
+		    et ce bloc est à renouveller pour chaque compte<br>
+		    Cloner les dépots (il faut donc supprimer les anciens pour les recloner) avec la command:<br>
+		    git clone git@{nom-qcq-descriptif-du-compte}:{nom-dutilisateur-git}/{the-repo-name}.git<br>
+		    Par exemple:<br>
+		    git clone git@rahul-personal-ssh-config-name:rahul-personal/TestRepo.git
+
+		</li>
                 <li>
                     Pour  réinitialiser les user et tokens (par exemple la première fois que l'on doit utiliser un autre compte github):<br>
                     git config --local --unset credential.helper<br>
