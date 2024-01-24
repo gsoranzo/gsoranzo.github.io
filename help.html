@@ -124,13 +124,21 @@
                     dans le dossier en question: git init<br>
                     pour les fichiers que l'on veut gitifier: git add ...<br>
                     git commit -m "Premier commit"<br>
+		    Ici deux possibilités:<br>
+		    Si on s'authentifie avec des tokens:<br>
                     git remote add origin https://github.com/...<br>
 		    Précision ici: il faut auparavant créer un projet (du même nom?) dans github<br>
                     git push --set-upstream origin master<br>
                     A ce niveau il faudra entrer le mot de pass par Token:<br>
                     les tokens se créent via les settings du compte - et non les settings du projet<br>
                     Il n'est pas nécessaire de créer un nouveau Token, réutiliser le Token présent dans keePass<br>
-                    Pour le login, prendre le nom présent dans l'adresse du projet
+                    Pour le login, prendre le nom présent dans l'adresse du projet<br>
+		    Si on s'authentifie via ssh:<br>
+		    git remote add origin git@{nom-descriptif-du compte}:{nom-dutilisateur-git}/{the-repo-name}<br>
+		    Le nom descriptif du compte est présent dans le fichier ~/.ssh/config<br>
+		    Le nom d'utilisateur c'est le login github c'est-à-dire le nom qui apparait devant le nom du dépot dans la barre d'addresse<br>
+	            Ensuite on fait<br> 
+                    git push --set-upstream origin master
                 </li>
                 <li>
                     Pour cloner un git personnel:<br>
