@@ -25,6 +25,23 @@
             ps2pdf fichier.ps fichier.pdf
         </blockquote>
 
+	<h3> Docker </h3>
+	<blockquote>
+		<ul>
+			<li> 
+			Faire une image à partir d'un dockerfile:<br>
+			docker build -t nom_de_limage ./chemin_vers_le_dockerfile
+			</li>
+			<li>
+			Refaire l'image même si le dockerfile n'a pas changé:<br>
+			docker build --no-cache -t ia_container ./.devcontainer
+			</li>
+			<li>
+			Pour autoriser X11 à accepter les sorties des conteneurs:<br>
+			xhost local:root
+			</li>
+		</ul>
+
 	<h3> eduroam </h3>
 	<blockquote>
 		Comment configurer Eduroam<br>
