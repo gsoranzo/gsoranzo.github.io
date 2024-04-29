@@ -28,11 +28,19 @@
             </ul>
         </blockquote>
 
-        <h3> Créer un pdf en ligne de commande: </h3>
+        <h3> Gestion des pdfs: </h3>
         <blockquote>
-            Commande:<br>
-            echo "Hello world" | a2ps -B -o ficher.ps<br>
-            ps2pdf fichier.ps fichier.pdf
+		<ul>
+			<li>
+			    Commande:<br>
+			    echo "Hello world" | a2ps -B -o ficher.ps<br>
+			    ps2pdf fichier.ps fichier.pdf
+			</li>
+			<li>
+			Compresser un pdf:<br>
+			ps2pdf -dPDFSETTINGS=/ebook input.pdf output.pdf
+			</li>
+		</ul>
         </blockquote>
 
 	<h3> Docker </h3>
