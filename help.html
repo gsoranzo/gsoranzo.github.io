@@ -537,6 +537,27 @@
             </ul>
         </blockquote>
 
+	<h3>Runpod</h3>
+	<blockquote>
+		<ul>
+			<li>
+				Se connecter sur le serveur distant: lancer le Pod puis cliquer sur Connect afin d'obtenir l'adresse IP dans le champ "SSH over exposed TCP: (Supports SCP & SFTP)". On tape alors une commande du type (ou on change l'adresse IP et le port)<br>
+				ssh root@213.173.105.82 -p 11043 -i ~/.ssh/github_gabrielSoranzoUPEC
+			</li>
+			<li>
+				Cloner le dépot git privé sur la machine distante:<br>
+				git clone https://GabrielSoranzo@github.com/...<br>
+				A ce niveau, rentrer un token
+			</li>
+			<li>
+				Se connecter sur un serveur distant dans vscode:<br>
+				Ctrl+Shif+P puis Remote-SSH: Connect to host ...<br>
+				Retaper la même commande que précédemment<br>
+				git clone https://GabrielSoranzo@github.com/
+			</li>
+		</ul>
+	</blockquote>
+
         <h3>sage</h3>
         <blockquote>
             <ul>
