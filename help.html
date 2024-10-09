@@ -116,6 +116,10 @@
                     Wav -> mp3:<br>
                     ffmpeg -i input.wav -vn -ar 44100 -ac 2 -b:a 192k output.mp3
                 </li>
+		<li>
+		    Lecture de vidéos ou d'audios de tout un répertoire:<br>
+		    for f in *.mp3 ; do ffplay -nodisp -autoexit "$f"; done
+		</li>
             </ul>
         </blockquote>
         
