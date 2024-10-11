@@ -201,6 +201,11 @@
                     Commande: git clone https://GabrielSoranzo@github.com/...<br>
                     Là il faudra rentrer le token.
                 </li>
+		<li>
+		    Vérifier que les fichiers ne sont pas trop gros avant un `git add`:<br>
+		    find . -type f -exec du -h {} + | sort -rh | head -20<br>
+		    Permet de lister les 20 fichiers les plus volumineux.<br>
+		    A ce jour (11/10/24) github bloque à partir de 100Mo.
             </ul>
         </blockquote>
 
