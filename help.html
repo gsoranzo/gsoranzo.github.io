@@ -583,6 +583,21 @@
             </ul>
         </blockquote>
 
+        <h3>Routage Linux</h3>
+        <blockquote>
+                <ul>
+                        <li>
+                                Supprimer une route par défaut:<br>
+                                sudo ip route del default via 192.168.8.1 dev wlo1<br>
+                                De manière persistante: echo "sudo ip route del default via 192.168.8.1 dev wlo1" >> /etc/rc.local
+                        </li>
+                        <li>
+                                Regarder la table de routage:<br>
+                                ip route show
+                        </li>
+                </ul>
+        </blockquote>
+
 	<h3>Runpod</h3>
 	<blockquote>
 		<ul>
