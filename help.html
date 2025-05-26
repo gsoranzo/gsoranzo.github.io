@@ -8,17 +8,54 @@
 	<body>
         <h1> TOUTES LES COMMANDES A RETENIR </h1>
 
-	<h3> cameras </h3>
-	<blockquote>
-		<ul>
-			<li>
-				Lister les webcam usb:<br>
-				v4l2-ctl --list-devices
-			</li>
-		</ul>
-	</blockquote>
+        <h2>Navigation</h2>
+        <nav>
+            <ul>
+                <li><a href="#cameras">cameras</a></li>
+                <li><a href="#convert">convert</a></li>
+                <li><a href="#pdf">Gestion des pdfs</a></li>
+                <li><a href="#docker">Docker</a></li>
+                <li><a href="#eduroam">eduroam</a></li>
+                <li><a href="#feh">feh</a></li>
+                <li><a href="#find">find</a></li>
+                <li><a href="#ffmpeg">ffmpeg</a></li>
+                <li><a href="#git">git</a></li>
+                <li><a href="#huggingface">Hugging Face Cli</a></li>
+                <li><a href="#jupyter">jupyter</a></li>
+                <li><a href="#latex">latex</a></li>
+                <li><a href="#markdown">markdown to html avec image embedded</a></li>
+                <li><a href="#matplotlib">matplotlib</a></li>
+                <li><a href="#updates">Mis à jours</a></li>
+                <li><a href="#vim">vim</a></li>
+                <li><a href="#pastel">pastel</a></li>
+                <li><a href="#qpdf">qpdf</a></li>
+                <li><a href="#ranger">ranger</a></li>
+                <li><a href="#rm">rm</a></li>
+                <li><a href="#routing">Routage Linux</a></li>
+                <li><a href="#runpod">Runpod</a></li>
+                <li><a href="#sage">sage</a></li>
+                <li><a href="#trans">trans</a></li>
+                <li><a href="#vimtex">vimtex</a></li>
+                <li><a href="#virtualenv">virtualenv</a></li>
+                <li><a href="#windows">windows reinstallation</a></li>
+                <li><a href="#winget">winget</a></li>
+                <li><a href="#wsl">wsl</a></li>
+                <li><a href="#xinput">xinput</a></li>
+                <li><a href="#zathura">zathura</a></li>
+            </ul>
+        </nav>
+        
+	      <h3 id="cameras"> cameras </h3>
+	      <blockquote>
+		      <ul>
+			      <li>
+				      Lister les webcam usb:<br>
+				      v4l2-ctl --list-devices
+			      </li>
+		      </ul>
+	      </blockquote>
 
-        <h3> convert </h3>
+        <h3 id="convert"> convert </h3>
         <blockquote>
             <ul>
                 <li>
@@ -28,7 +65,7 @@
             </ul>
         </blockquote>
 
-        <h3> Gestion des pdfs: </h3>
+        <h3 id="pdf"> Gestion des pdfs: </h3>
         <blockquote>
 		<ul>
 			<li>
@@ -43,7 +80,7 @@
 		</ul>
         </blockquote>
 
-	<h3> Docker </h3>
+	<h3 id="docker"> Docker </h3>
 	<blockquote>
 		<ul>
 			<li>
@@ -69,7 +106,7 @@
 		</ul>
 	</blockquote>
 
-	<h3> eduroam </h3>
+	<h3 id="eduroam"> eduroam </h3>
 	<blockquote>
 		Comment configurer Eduroam<br>
 		<ul>
@@ -86,12 +123,12 @@
 		</ul>
 	</blockquote>
 
-        <h3> feh </h3>
+        <h3 id="feh"> feh </h3>
         <blockquote>
             Pour visualiser rapidement des images
         </blockquote>
 
-        <h3> find </h3>
+        <h3 id="fid"> find </h3>
         <blockquote>
             <ul>
                 <li> 
@@ -105,7 +142,7 @@
             </ul>
         </blockquote>
 
-        <h3> ffmpeg </h3>
+        <h3 id="ffmpeg"> ffmpeg </h3>
         <blockquote>
             <ul>
                 <li>
@@ -123,7 +160,7 @@
             </ul>
         </blockquote>
         
-        <h3> git </h3>
+        <h3 id="git"> git </h3>
         <blockquote>
             <ul>
 		<li>
@@ -209,7 +246,7 @@
             </ul>
         </blockquote>
 
-	<h3> Hugging Face Cli </h3>
+	<h3 id="huggingface"> Hugging Face Cli </h3>
 	<blockquote>
 	    <ul>
 		<li>
@@ -219,17 +256,21 @@
 	    </ul>
 	</blockquote>
 
-        <h3> jupyter </h3>
+        <h3 id="jupyter"> jupyter </h3>
         <blockquote>
             <ul>
                 <li>
                     Changer de thème:<br>
                     jt -t monokai -f fira -fs 10 -nf ptsans -nfs 11 -N -kl -cursw 2 -cursc r -cellw 95% -T
                 </li>
+                <li>
+                    Hide/show header:<br>
+                    Ctrl+H
+                </li>
             </ul>
         </blockquote>
 
-        <h3> latex </h3>
+        <h3 id="latex"> latex </h3>
         <blockquote>
             <ul>
 		<li>
@@ -375,7 +416,7 @@
             </ul>
         </blockquote>
 
-	<h3> markdown to html avec image embedded </h3>
+	<h3 id="markdown"> markdown to html avec image embedded </h3>
 	<blockquote>
 		Il faut exporter d'abord le markdown en HTML.<br>
 		Ensuite on lance le serveur http dans le dossier contenant le html généré:<br>
@@ -383,7 +424,7 @@
 		Ensuite dans Firefox on enregistre le html en un html self contained avec l'extension SingleFile.
 	</blockquote>
 
-        <h3> matplotlib </h3>
+        <h3 id="matplotlib"> matplotlib </h3>
         <blockquote>
             <ul>
                 <li>
@@ -442,7 +483,7 @@
             </ul>
         </blockquote>
 
-	<h3> Mis à jours </h3>
+	<h3 id="updates"> Mis à jours </h3>
 	<blockquote>
 	    <ul>
 		<li>
@@ -454,7 +495,7 @@
 	    </ul>
 	</blockquote>
 
-        <h3> neovim </h3>
+        <h3 id="vim"> vim </h3>
         <blockquote>
             <ul>
                 <li>
@@ -501,27 +542,12 @@
                     Split vertical: Ctrl+w puis v<br>
                     Split horizontal: Crtl+w puis s<br>
                 </li>
-                <li>
-                    Fichier de configuration: dans ~/.config/nvim/init.vim
-                </li>
-                <li>
-                    Plugin manager: il y en a plusieurs -> voir sur vimawesome.com les différents<br>
-                    J'utilise VimPlug<br>
-                    On écrit Plug ... dans init.vim<br>
-                    Ensuite: :PlugInstall
-                </li>
-                <li>
-                    Snippet dans vim:<br>
-                    J'utilise UltiSnips<br>
-                    Editer un type de fichier pour lequel on veut faire un snippet<br>
-                    Taper alors :UltiSnipsEdit<br>
-                    Bon tuto: <a href="https://developpaper.com/vim-code-snippet-plug-in-ultisnips-usage-tutorial/">Lien developpaper.com</a>
             </ul>
         </blockquote>
 
 
 
-        <h3> pastel </h3>
+        <h3 id="pastel"> pastel </h3>
         <blockquote>
             Outil pour choisir des couleurs
             <ul>
@@ -531,7 +557,7 @@
             </ul>
         </blockquote>
 
-        <h3> qpdf </h3>
+        <h3 id="qpdf"> qpdf </h3>
         <blockquote>
             Outil que j'utilise pour rassembler plusieurs fichier pdf <br>
 
@@ -540,17 +566,7 @@
             qpdf --empty --pages *.pdf -- out.pdf
         </blockquote>
 
-        <h3> Jupyter </h3>
-        <blockquote>
-            <ul>
-                <li>
-                    Hide/show header:<br>
-                    Ctrl+H
-                </li>
-            </ul>
-        </blockquote>
-
-        <h3> ranger </h3>
+        <h3 id="ranger"> ranger </h3>
         <blockquote>
             File explorer in terminal mode.
             <ul>
@@ -569,7 +585,7 @@
             </ul>
         </blockquote>
 
-        <h3>rm</h3>
+        <h3 id="rm">rm</h3>
         <blockquote>
             <ul>
                 <li>
@@ -583,7 +599,7 @@
             </ul>
         </blockquote>
 
-        <h3>Routage Linux</h3>
+        <h3 id="routing">Routage Linux</h3>
         <blockquote>
                 <ul>
                         <li>
@@ -598,7 +614,7 @@
                 </ul>
         </blockquote>
 
-	<h3>Runpod</h3>
+	<h3 id="runpod">Runpod</h3>
 	<blockquote>
 		<ul>
 			<li>
@@ -619,7 +635,7 @@
 		</ul>
 	</blockquote>
 
-        <h3>sage</h3>
+        <h3 id="sage">sage</h3>
         <blockquote>
             <ul>
 		<li>
@@ -633,13 +649,13 @@
             </ul>
         </blockquote>
 
-        <h3> trans </h3>
+        <h3 id="trans"> trans </h3>
         <blockquote>
             Pour traduire
         </blockquote>
 
 
-        <h3> vimtex </h3>
+        <h3 id="vimtex"> vimtex </h3>
         <blockquote>
             <ul>
                 <li>
@@ -660,7 +676,7 @@
             </ul>
         </blockquote>
 
-	<h3> virtualenv </h3>
+	<h3 id="virtualenv"> virtualenv </h3>
 	<blockquote>
 		<ul>
 			<li>
@@ -694,7 +710,7 @@
 		</ul>
 	</blockquote>
 
-    <h3> windows reinstallation </h3>
+    <h3 id="windows"> windows reinstallation </h3>
     <blockquote>
         <ul>
             <li>
@@ -706,7 +722,7 @@
         </ul>
     </blockquote>
 
-    <h3> winget </h3>
+    <h3 id="winget"> winget </h3>
     <blockquote>
             <ul>
                 <li>
@@ -716,7 +732,7 @@
             </ul>
     </blockquote>
 
-    <h3> wsl </h3>
+    <h3 id="wsl"> wsl </h3>
     <blockquote>
         <ul>
             <li>
@@ -725,7 +741,7 @@
         </ul>
     </blockquote>
 
-	<h3> xinput </h3>
+	<h3 id="xinput"> xinput </h3>
 	<blockquote>
 		<ul>
 			<li>
@@ -740,7 +756,7 @@
 		</ul>
 	</blockquote>
 
-        <h3> zathura </h3>
+        <h3 id="zathura"> zathura </h3>
         <blockquote>
             <ul>
                 <li>
