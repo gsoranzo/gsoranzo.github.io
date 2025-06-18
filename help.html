@@ -1,16 +1,62 @@
-<!DOCTYPE html>
-<html lang='fr'>
-	<head>
-		<meta charset="utf-8">
-		<title>Toutes les commandes à retenir</title>
-		<meta name="Description" content="Document contenant les aides à retenir">
-	</head>
-	<body>
-        <h1> TOUTES LES COMMANDES A RETENIR </h1>
+<html lang="fr"><head>
+        <meta charset="utf-8">
+        <title>Toutes les commandes à retenir</title>
+        <meta name="Description" content="Document contenant les aides à retenir">
+        <style>
+			.form-container {
+				background: #f5f5f5;
+				padding: 20px;
+				margin: 20px 0;
+				border-radius: 5px;
+				border: 1px solid #ddd;
+			}
+			.form-group {
+				margin-bottom: 15px;
+			}
+			label {
+				display: block;
+				margin-bottom: 5px;
+				font-weight: bold;
+			}
+			input[type="text"], textarea {
+				width: 100%;
+				padding: 8px;
+				border: 1px solid #ccc;
+				border-radius: 3px;
+				font-size: 14px;
+			}
+			textarea {
+				height: 100px;
+				resize: vertical;
+			}
+			button {
+				background: #007cba;
+				color: white;
+				padding: 10px 20px;
+				border: none;
+				border-radius: 3px;
+				cursor: pointer;
+				font-size: 14px;
+				margin-right: 10px;
+			}
+			button:hover {
+				background: #005a87;
+			}
+			.save-button {
+				background: #28a745;
+			}
+			.save-button:hover {
+				background: #1e7e34;
+			}
+		</style>
+    </head>
+    <body>
+        <h1>TOUTES LES COMMANDES A RETENIR</h1>
 
         <h2>Navigation</h2>
         <nav>
-            <ul>
+            <ul id="nav-list">
+                <li><a href="#modif">Modifier le fichier de commande</a></li>
                 <li><a href="#cameras">cameras</a></li>
                 <li><a href="#convert">convert</a></li>
                 <li><a href="#pdf">Gestion des pdfs</a></li>
@@ -44,727 +90,808 @@
                 <li><a href="#zathura">zathura</a></li>
             </ul>
         </nav>
-        
-	      <h3 id="cameras"> cameras </h3>
-	      <blockquote>
-		      <ul>
-			      <li>
-				      Lister les webcam usb:<br>
-				      v4l2-ctl --list-devices
-			      </li>
-		      </ul>
-	      </blockquote>
 
-        <h3 id="convert"> convert </h3>
-        <blockquote>
-            <ul>
-                <li>
-                    Convertir un png en icone:<br>
-                    convert <your-image-here> -define icon:auto-resize=256,64,48,32,16 favicon.ico
-                </li>
-            </ul>
-        </blockquote>
+        <div id="content-container">
+            <h3 id="cameras">cameras</h3>
+            <blockquote>
+                <ul>
+                    <li>
+                        Lister les webcam usb:<br>
+                        v4l2-ctl --list-devices
+                    </li>
+                </ul>
+            </blockquote>
 
-        <h3 id="pdf"> Gestion des pdfs: </h3>
-        <blockquote>
-		<ul>
-			<li>
-			    Commande:<br>
-			    echo "Hello world" | a2ps -B -o ficher.ps<br>
-			    ps2pdf fichier.ps fichier.pdf
-			</li>
-			<li>
-			Compresser un pdf:<br>
-			ps2pdf -dPDFSETTINGS=/ebook input.pdf output.pdf
-			</li>
-		</ul>
-        </blockquote>
+            <h3 id="convert">convert</h3>
+            <blockquote>
+                <ul>
+                    <li>
+                        Convertir un png en icone:<br>
+                        convert &lt;your-image-here&gt; -define icon:auto-resize=256,64,48,32,16 favicon.ico
+                    </li>
+                </ul>
+            </blockquote>
 
-	<h3 id="docker"> Docker </h3>
-	<blockquote>
-		<ul>
-			<li>
-			Se connecter à un conteneur déjà lancé:<br>
-			docker exec -it &lt;mycontainer&gt; bash
-			</li>
-			<li>
-			Lister les conteneur lancés:<br>
-			docker ps
-			</li>
-			<li> 
-			Faire une image à partir d'un dockerfile:<br>
-			docker build -t nom_de_limage ./chemin_vers_le_dockerfile
-			</li>
-			<li>
-			Refaire l'image même si le dockerfile n'a pas changé:<br>
-			docker build --no-cache -t ia_container ./.devcontainer
-			</li>
-			<li>
-			Pour autoriser X11 à accepter les sorties des conteneurs:<br>
-			xhost local:root
-			</li>
-		</ul>
-	</blockquote>
+            <h3 id="pdf">Gestion des pdfs:</h3>
+            <blockquote>
+                <ul>
+                    <li>
+                        Commande:<br>
+                        echo "Hello world" | a2ps -B -o ficher.ps<br>
+                        ps2pdf fichier.ps fichier.pdf
+                    </li>
+                    <li>
+                        Compresser un pdf:<br>
+                        ps2pdf -dPDFSETTINGS=/ebook input.pdf output.pdf
+                    </li>
+                </ul>
+            </blockquote>
 
-	<h3 id="eduroam"> eduroam </h3>
-	<blockquote>
-		Comment configurer Eduroam<br>
-		<ul>
-			<li>
-				Dans Ubuntu<br>
-				* Sécurité Wi-Fi : WPA et WPA2 entreprise<br>
-				* Authentification : Tunneled TLS<br>
-				* Identité anonyme : laissez vide<br>
-				* Cochez la case Aucun certificat de CA n’est requis<br>
-				* Authentification interne : PAP<br>
-				* Nom d’utilisateur : votre identifiant prenom.nom UPEC suivi de @u-pec.fr<br>
-				* Mot de passe : mot de passe UPEC<br>
-			</li>
-		</ul>
-	</blockquote>
+            <h3 id="docker">Docker</h3>
+            <blockquote>
+                <ul>
+                    <li>
+                        Se connecter à un conteneur déjà lancé:<br>
+                        docker exec -it &lt;mycontainer&gt; bash
+                    </li>
+                    <li>
+                        Lister les conteneur lancés:<br>
+                        docker ps
+                    </li>
+                </ul>
+            </blockquote>
 
-        <h3 id="feh"> feh </h3>
-        <blockquote>
-            Pour visualiser rapidement des images
-        </blockquote>
+            <h3 id="eduroam">eduroam</h3>
+            <blockquote>
+                Comment configurer Eduroam<br>
+                <ul>
+                    <li>
+                        Dans Ubuntu<br>
+                        * Sécurité Wi-Fi : WPA et WPA2 entreprise<br>
+                        * Authentification : Tunneled TLS<br>
+                        * Identité anonyme : laissez vide<br>
+                        * Cochez la case Aucun certificat de CA n'est requis<br>
+                        * Authentification interne : PAP<br>
+                        * Nom d'utilisateur : votre identifiant prenom.nom UPEC suivi de @u-pec.fr<br>
+                        * Mot de passe : mot de passe UPEC<br>
+                    </li>
+                </ul>
+            </blockquote>
 
-        <h3 id="fid"> find </h3>
-        <blockquote>
-            <ul>
-                <li> 
-                    Rechercher des fichiers par leur nom et executer une commande pour chacun:<br>
-                    find . -name '*.pdf' -type f -exec mv {} ./ \;
-                </li>
-                <li>
-                    Rechercher des fichiers ne vérifiant pas une condition de nom:<br>
-                    find . -not -name '*.pdf'
-                </li>
-            </ul>
-        </blockquote>
+            <h3 id="feh">feh</h3>
+            <blockquote>
+                Pour visualiser rapidement des images
+            </blockquote>
 
-        <h3 id="ffmpeg"> ffmpeg </h3>
-        <blockquote>
-            <ul>
-                <li>
-                    Compression de vidéos:<br>
-                    ffmpeg -i vidéo.mp4 -vcodec h264 -acodec aac vidéo_réduite.mp4
-                </li>
-                <li>
-                    Wav -> mp3:<br>
-                    ffmpeg -i input.wav -vn -ar 44100 -ac 2 -b:a 192k output.mp3
-                </li>
-		<li>
-		    Lecture de vidéos ou d'audios de tout un répertoire:<br>
-		    for f in *.mp3 ; do ffplay -nodisp -autoexit "$f"; done
-		</li>
-            </ul>
-        </blockquote>
-        
-        <h3 id="git"> git </h3>
-        <blockquote>
-            <ul>
-		<li>
-		    Voir <a href="https://gist.github.com/xirixiz/b6b0c6f4917ce17a90e00f9b60566278">ici</a> pour des détails.<br>
-		    Pour fonctionner avec un système de clés:<br>
-		    Se place dans ~/.ssh et générer la clé: ssh-keygen -t rsa -C "your_email@example.com"<br>
-		    Les phrases secrètes permettent de sécuriser l'utilisation locale (compromission du poste)<br>
-		    Copier la clé publique dans git: cat le_nom_de_ma_cle.pub | xclip -sel clip<br>
-		    Ajouter la clé publique dans l'interface git en ligne, via les Settings: <a href="https://docs.github.com/fr/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account?tool=webui">lien</a><br>
-		    Tester la clé: ssh -T git@github.com
-		</li>
-		<li>
-		    Voir <a href="https://gist.github.com/rahularity/86da20fe3858e6b311de068201d279e3">ici</a> pour des détails.<br>
-		    Pour fonctionner avec plusieurs compte et avec des clés:<br>
-		    Comme ci-dessus, générer les différentes clés pour chaque compte et ajouter les clés publiques dans l'interface web<br>
-		    Démarrer éventuellement l'agent ssh en deamon: eval "$(ssh-agent -s)"<br>
-		    Ajouter les clés privées dans l'agent: ssh-add ~/.ssh/ma_clé_privé<br>
-		    Créer un fichier ~/.ssh/config s'il n'existe pas déjà avec comme contenu:<br>
-     		    Host nom-qcq-descriptif-du-compte<br>
-          	    <dd>HostName github.com<br>
-          	    <dd>User git<br>
-          	    <dd>IdentityFile ~/.ssh/ma_cle_privée<br>
-		    <dd>IdentitiesOnly yes<br>
-		    et ce bloc est à renouveller pour chaque compte<br>
-		    Cloner les dépots (il faut donc supprimer les anciens pour les recloner) avec la command:<br>
-		    git clone git@{nom-qcq-descriptif-du-compte}:{nom-dutilisateur-git}/{the-repo-name}.git<br>
-		    Par exemple:<br>
-		    git clone git@rahul-personal-ssh-config-name:rahul-personal/TestRepo.git
+            <h3 id="fid">find</h3>
+            <blockquote>
+                <ul>
+                    <li>
+                        Rechercher des fichiers par leur nom et executer une commande pour chacun:<br>
+                        find . -name '*.pdf' -type f -exec mv {} ./ \;
+                    </li>
+                    <li>
+                        Rechercher des fichiers ne vérifiant pas une condition de nom:<br>
+                        find . -not -name '*.pdf'
+                    </li>
+                </ul>
+            </blockquote>
 
-		</li>
-                <li>
-                    Pour  réinitialiser les user et tokens (par exemple la première fois que l'on doit utiliser un autre compte github):<br>
-                    git config --local --unset credential.helper<br>
-                    git config --global --unset credential.helper
-                </li>
-                <li>
-                    Pour voir la liste des fichiers trackés:<br>
-                    git ls-tree -r master --name-only
-                </li>
-                <li>
-                    Comparer la copie local et le distant:<br>
-                    git diff @{upstream}
-                </li>
-                <li>
-                    Gitifier un dossier:<br>
-                    dans le dossier en question: git init<br>
-		    Attention: le dossier ne doit pas être vide sinon il va y avoir un problème avec le premier push<br>
-                    pour les fichiers que l'on veut gitifier: git add ...<br>
-                    git commit -m "Premier commit"<br>
-		    Ici deux possibilités:<br>
-		    <ul>
-	              <li>
-		    Si on s'authentifie avec des tokens:<br>
-                    git remote add origin https://github.com/...<br>
-		    Précision ici: il faut auparavant créer un projet (du même nom?) dans github<br>
-                    git push --set-upstream origin master<br>
-                    A ce niveau il faudra entrer le mot de pass par Token:<br>
-                    les tokens se créent via les settings du compte - et non les settings du projet<br>
-                    Il n'est pas nécessaire de créer un nouveau Token, réutiliser le Token présent dans keePass<br>
-                    Pour le login, prendre le nom présent dans l'adresse du projet<br>
-		      </li>
-		      <li>
-		    Si on s'authentifie via ssh:<br>
-		    git remote add origin git@{nom-descriptif-du compte}:{nom-dutilisateur-git}/{the-repo-name}<br>
-		    Le nom descriptif du compte est présent dans le fichier ~/.ssh/config<br>
-		    Le nom d'utilisateur c'est le login github c'est-à-dire le nom qui apparait devant le nom du dépot dans la barre d'addresse<br>
-	            Ensuite on fait<br> 
-                    git push --set-upstream origin master
-		      </li>
-		    </ul>
-                </li>
-                <li>
-                    Pour cloner un git personnel:<br>
-                    Inutile de créer un dossier pour réceptionner le git: la commande git clone créera un sous-dossier<br>
-                    Commande: git clone https://GabrielSoranzo@github.com/...<br>
-                    Là il faudra rentrer le token.
-                </li>
-		<li>
-		    Vérifier que les fichiers ne sont pas trop gros avant un `git add`:<br>
-		    find . -type f -exec du -h {} + | sort -rh | head -20<br>
-		    Permet de lister les 20 fichiers les plus volumineux.<br>
-		    A ce jour (11/10/24) github bloque à partir de 50Mo.
-            </ul>
-        </blockquote>
+            <h3 id="ffmpeg">ffmpeg</h3>
+            <blockquote>
+                <ul>
+                    <li>
+                        Compression de vidéos:<br>
+                        ffmpeg -i vidéo.mp4 -vcodec h264 -acodec aac vidéo_réduite.mp4
+                    </li>
+                    <li>
+                        Wav -&gt; mp3:<br>
+                        ffmpeg -i input.wav -vn -ar 44100 -ac 2 -b:a 192k output.mp3
+                    </li>
+                    <li>
+                        Lecture de vidéos ou d'audios de tout un répertoire:<br>
+                        for f in *.mp3 ; do ffplay -nodisp -autoexit "$f"; done
+                    </li>
+                </ul>
+            </blockquote>
 
-	<h3 id="huggingface"> Hugging Face Cli </h3>
-	<blockquote>
-	    <ul>
-		<li>
-		    Suppresssion de modèle dans le cache:<br>
-		    huggingface-cli delete-cache
-		</li>
-	    </ul>
-	</blockquote>
+            <h3 id="git">git</h3>
+            <blockquote>
+                <ul>
+                    <li>
+                        Voir <a href="https://gist.github.com/xirixiz/b6b0c6f4917ce17a90e00f9b60566278">ici</a> pour des détails.<br>
+                        Pour fonctionner avec un système de clés:<br>
+                        Se place dans ~/.ssh et générer la clé: ssh-keygen -t rsa -C "your_email@example.com"<br>
+                        Les phrases secrètes permettent de sécuriser l'utilisation locale (compromission du poste)<br>
+                        Copier la clé publique dans git: cat le_nom_de_ma_cle.pub | xclip -sel clip<br>
+                        Ajouter la clé publique dans l'interface git en ligne, via les Settings:
+                        <a href="https://docs.github.com/fr/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account?tool=webui">lien</a><br>
+                        Tester la clé: ssh -T git@github.com
+                    </li>
+                    <li>
+                        Voir <a href="https://gist.github.com/rahularity/86da20fe3858e6b311de068201d279e3">ici</a> pour des détails.<br>
+                        Pour fonctionner avec plusieurs compte et avec des clés:<br>
+                        Comme ci-dessus, générer les différentes clés pour chaque compte et ajouter les clés publiques dans l'interface web<br>
+                        Démarrer éventuellement l'agent ssh en deamon: eval "$(ssh-agent -s)"<br>
+                        Ajouter les clés privées dans l'agent: ssh-add ~/.ssh/ma_clé_privé<br>
+                        Créer un fichier ~/.ssh/config s'il n'existe pas déjà avec comme contenu:<br>
+                        Host nom-qcq-descriptif-du-compte<br>
+                        <dd>HostName github.com<br></dd>
+                        <dd>User git<br></dd>
+                        <dd>IdentityFile ~/.ssh/ma_cle_privée<br></dd>
+                        <dd>
+                            IdentitiesOnly yes<br>
+                            et ce bloc est à renouveller pour chaque compte<br>
+                            Cloner les dépots (il faut donc supprimer les anciens pour les recloner) avec la command:<br>
+                            git clone git@{nom-qcq-descriptif-du-compte}:{nom-dutilisateur-git}/{the-repo-name}.git<br>
+                            Par exemple:<br>
+                            git clone git@rahul-personal-ssh-config-name:rahul-personal/TestRepo.git
+                        </dd>
+                    </li>
 
-        <h3 id="jupyter"> jupyter </h3>
-        <blockquote>
-            <ul>
-                <li>
-                    Changer de thème:<br>
-                    jt -t monokai -f fira -fs 10 -nf ptsans -nfs 11 -N -kl -cursw 2 -cursc r -cellw 95% -T
-                </li>
-                <li>
-                    Hide/show header:<br>
-                    Ctrl+H
-                </li>
-            </ul>
-        </blockquote>
+                    <li>
+                        Pour réinitialiser les user et tokens (par exemple la première fois que l'on doit utiliser un autre compte github):<br>
+                        git config --local --unset credential.helper<br>
+                        git config --global --unset credential.helper
+                    </li>
+                    <li>
+                        Pour voir la liste des fichiers trackés:<br>
+                        git ls-tree -r master --name-only
+                    </li>
+                    <li>
+                        Comparer la copie local et le distant:<br>
+                        git diff @{upstream}
+                    </li>
+                    <li>
+                        Gitifier un dossier:<br>
+                        dans le dossier en question: git init<br>
+                        Attention: le dossier ne doit pas être vide sinon il va y avoir un problème avec le premier push<br>
+                        pour les fichiers que l'on veut gitifier: git add ...<br>
+                        git commit -m "Premier commit"<br>
+                        Ici deux possibilités:<br>
+                        <ul>
+                            <li>
+                                Si on s'authentifie avec des tokens:<br>
+                                git remote add origin https://github.com/...<br>
+                                Précision ici: il faut auparavant créer un projet (du même nom?) dans github<br>
+                                git push --set-upstream origin master<br>
+                                A ce niveau il faudra entrer le mot de pass par Token:<br>
+                                les tokens se créent via les settings du compte - et non les settings du projet<br>
+                                Il n'est pas nécessaire de créer un nouveau Token, réutiliser le Token présent dans keePass<br>
+                                Pour le login, prendre le nom présent dans l'adresse du projet<br>
+                            </li>
+                            <li>
+                                Si on s'authentifie via ssh:<br>
+                                git remote add origin git@{nom-descriptif-du compte}:{nom-dutilisateur-git}/{the-repo-name}<br>
+                                Le nom descriptif du compte est présent dans le fichier ~/.ssh/config<br>
+                                Le nom d'utilisateur c'est le login github c'est-à-dire le nom qui apparait devant le nom du dépot dans la barre d'addresse<br>
+                                Ensuite on fait<br>
+                                git push --set-upstream origin master
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        Pour cloner un git personnel:<br>
+                        Inutile de créer un dossier pour réceptionner le git: la commande git clone créera un sous-dossier<br>
+                        Commande: git clone https://GabrielSoranzo@github.com/...<br>
+                        Là il faudra rentrer le token.
+                    </li>
+                    <li>
+                        Vérifier que les fichiers ne sont pas trop gros avant un `git add`:<br>
+                        find . -type f -exec du -h {} + | sort -rh | head -20<br>
+                        Permet de lister les 20 fichiers les plus volumineux.<br>
+                        A ce jour (11/10/24) github bloque à partir de 50Mo.
+                    </li>
+                <li>Pour annuler un `git add .`: `git reset`</li></ul>
+            </blockquote>
 
-        <h3 id="latex"> latex </h3>
-        <blockquote>
-            <ul>
-		<li>
-			Very basic latex document:<br>
-			\documentclass{article}<br>
-			\begin{document}<br>
-			  Hello World!<br>
-			\end{document}
-	</li>
-                <li>
-                    Commandes Latex pour le français:<br>
-                    \usepackage[T1]{fontenc}<br>
-                    \usepackage[francais]{babel}<br>
-                </li>
-                <li>
-                    Deux figures côte à côte<br>
-                    \begin{figure*}[htp]<br>
-                    \centering<br>
-                    \subfigure{\input{ExMod.pgf}}<br>
-                    \subfigure{\input{ExMod2.pgf}}<br>
-                    \end{figure*}<br>
-                </li>
-                <li>
-                    flèche sur le côté des équations:<br>
-                    \usepackage{witharrows}<br>
-                    \begin{align*}<br>
-                    \setlength{\jot}{10pt}<br>
-                    \begin{WithArrows}<br>
-                        P(x)=0 &\iff (x+2)(\Q)=0\\<br>
-                        &\iff x=-2\Arrow[xoffset=+0.5cm]{$\Delta=1+4=5$}\\<br>
-                        &\iff x=-2<br>
-                    \end{WithArrows}<br>
-                    \end{align*}<br>
-                </li>
-                <li>
-                    enumerate entourés:<br>
-                    \usepackage{enumitem}<br>
-                    \usepackage{tikz}<br>
-                    \newcommand*\circled[1]{\tikz[baseline=(char.base)]{<br>
-                    \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}<br>
-                    Ensuite:<br>
-                    \begin{enumerate}[label=\protect\circled{\arabic*}]<br>
-                </li>
-                <li>
-                    Arc de cercle:<br>
-                    \usepackage{yhmath}<br>
-                    $\wideparen{AB}$
-                </li>
-                <li>
-                    Accolade en dessous:<br>
-                    \underbrace{aaaa}_{bbb}
-                </li>
-                <li>
-                    Ensembles R,N, Q,...<br>
-                    \usepackage{amsfonts} <br>
-                    \mathbb{R}
-                </li>
-                <li>
-                    Les références à des endroits du texte:<br>
-                    à l'endroit que l'on veut référencer: \label<br>
-                    à l'endroit où l'on veut faire référence: \ref<br>
-                </li>
-                <li>
-                    Barre de fraction oblique<br>
-                    \usepackage{xfrac}<br>
-                    \sfrac{1}{2}<br>
-                </li>
-                <li>
-                    Muli-colonnes:<br>
-                    usepackage{multicol}<br>
-                    \begin{multicols}{2}<br>
-                    ...
-                    \end{multicols}<br>
-                    Pour rompre une colonne:<br>
-                    \vfill\null<br>
-                    \columnbreak
-                </li>
-                <li>
-                    Lien hypertex:<br>
-                    \usepackage{hyperref}<br>
-                    \url{...}
-                </li>
-                <li>
-                    qrcode: attention pb avec babel<br>
-                    \usepackage{qrcode}<br>
-                    \qrcode{...}
-                </li>
-                <li>
-                    Gesion des marges:<br>
-                    \usepackage[hmargin=1cm,vmargin=0.25cm]{geometry}
-                </li>
-                <li>
-                    Pas d'espaces au début des paragraphes: \setlength{\parindent}{0pt}
-                </li>
-                <li>
-                    Pour tracer un courbe:<br>
-                    \usepackage{pgfplots}<br>
-                    \begin{tikzpicture}<br>
-                    \begin{axis} [axis lines=center]<br>
-                    \addplot [domain=0:21, smooth, thick] { 2*(1-exp(-x/3)) };<br>
-                    \addplot [domain=0:21] {2};<br>
-                    \end{axis}<br>
-                    \end{tikzpicture}<br>
-                </li>
-                <li>
-                    Pour biffer en mode mathématique:<br>
-                    \usepackage{cancel}<br>
-                    Pour biffer: \cancel{...}<br>
-                    Pour faire un croix: \xcancel{...}<br>
-                </li>
-                <li>
-                    Pour taper du code source:<br>
-                    \usepackage{listings}<br>
-                    \begin{lstlisting}[language=Python,basicstyle=\tiny]<br>
-                    ...<br>
-                    \end{lstlisting}<br>
-		    Juste pour un mot \verb|...|
-                </li>
-                <li>
-                    Multiples alignements:<br>
-                    \usepackage{amsmath}<br>
-                    \begin{alignat}{3}<br>
-                     blacla & aa && bb<br>
-                    ...<br>
-                    \end{alignat}<br>
-                    Attention aux alignements: rlrlrlrl...
-                </li>
-                <li>
-                    Lignes multiples en indices:<br>
-                    \sum_\substack{i=0 \\ i\neq 4}
-                </li>
-                <li>
-                    Pour les circuits électriques:<br>
-                    Exemple d'un circuit RC:<br>
-                    \usepackage[european, straightvoltages, RPvoltages]{circuitikz}<br>
-                    \begin{circuitikz}<br>
-                    \draw (0,0) to [vsource,v_=$v_e(t)$] (0,3);<br>
-                    \draw (0,3) to [R,l_=R,v^=$v_R(t)$,i_=$i(t)$] (3,3);<br>
-                    \draw (3,3) to [C,l_=C,v^=$v_C(t)$] (3,0);<br>
-                    \draw (3,0) -- (0,0);<br>
-                    \end{circuitikz}<br>
-                </li>
-            </ul>
-        </blockquote>
+            <h3 id="huggingface">Hugging Face Cli</h3>
+            <blockquote>
+                <ul>
+                    <li>
+                        Suppresssion de modèle dans le cache:<br>
+                        huggingface-cli delete-cache
+                    </li>
+                </ul>
+            </blockquote>
 
-	<h3 id="markdown"> markdown to html avec image embedded </h3>
-	<blockquote>
-		Il faut exporter d'abord le markdown en HTML.<br>
-		Ensuite on lance le serveur http dans le dossier contenant le html généré:<br>
-		python -m http.server <br>
-		Ensuite dans Firefox on enregistre le html en un html self contained avec l'extension SingleFile.
-	</blockquote>
+            <h3 id="jupyter">jupyter</h3>
+            <blockquote>
+                <ul>
+                    <li>
+                        Changer de thème:<br>
+                        jt -t monokai -f fira -fs 10 -nf ptsans -nfs 11 -N -kl -cursw 2 -cursc r -cellw 95% -T
+                    </li>
+                    <li>
+                        Hide/show header:<br>
+                        Ctrl+H
+                    </li>
+                </ul>
+            </blockquote>
 
-        <h3 id="matplotlib"> matplotlib </h3>
-        <blockquote>
-            <ul>
-                <li>
-                    Changer le grosseur du point avec plt.plot:<br>
-                    markersize=...
-                </li>
-                <li>
-                    Pas d'affichage des axes:<br>
-                    plt.axis('off')
-                </li>
-                <li>
-                    Texte avec rotation<br>
-                    plt.text(..., rotation=angle en degré)
-                </li>
-                <li>
-                    Equal aspect ration:<br>
-                    plt.axis('equal')
-                </li>
-                <li>
-                    export to Latex:<br>
-                    import matplotlib.pyplot as plt<br>
-                    import matplotlib<br>
-                    matplotlib.rcParams.update({<br>
+            <h3 id="latex">latex</h3>
+            <blockquote>
+                <ul>
+                    <li>
+                        Very basic latex document:<br>
+                        \documentclass{article}<br>
+                        \begin{document}<br>
+                        Hello World!<br>
+                        \end{document}
+                    </li>
+                    <li>
+                        Commandes Latex pour le français:<br>
+                        \usepackage[T1]{fontenc}<br>
+                        \usepackage[francais]{babel}<br>
+                    </li>
+                    <li>
+                        Deux figures côte à côte<br>
+                        \begin{figure*}[htp]<br>
+                        \centering<br>
+                        \subfigure{\input{ExMod.pgf}}<br>
+                        \subfigure{\input{ExMod2.pgf}}<br>
+                        \end{figure*}<br>
+                    </li>
+                    <li>
+                        flèche sur le côté des équations:<br>
+                        \usepackage{witharrows}<br>
+                        \begin{align*}<br>
+                        \setlength{\jot}{10pt}<br>
+                        \begin{WithArrows}<br>
+                        P(x)=0 &amp;\iff (x+2)(\Q)=0\\<br>
+                        &amp;\iff x=-2\Arrow[xoffset=+0.5cm]{$\Delta=1+4=5$}\\<br>
+                        &amp;\iff x=-2<br>
+                        \end{WithArrows}<br>
+                        \end{align*}<br>
+                    </li>
+                    <li>
+                        enumerate entourés:<br>
+                        \usepackage{enumitem}<br>
+                        \usepackage{tikz}<br>
+                        \newcommand*\circled[1]{\tikz[baseline=(char.base)]{<br>
+                        \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}<br>
+                        Ensuite:<br>
+                        \begin{enumerate}[label=\protect\circled{\arabic*}]<br>
+                    </li>
+                    <li>
+                        Arc de cercle:<br>
+                        \usepackage{yhmath}<br>
+                        $\wideparen{AB}$
+                    </li>
+                    <li>
+                        Accolade en dessous:<br>
+                        \underbrace{aaaa}_{bbb}
+                    </li>
+                    <li>
+                        Ensembles R,N, Q,...<br>
+                        \usepackage{amsfonts} <br>
+                        \mathbb{R}
+                    </li>
+                    <li>
+                        Les références à des endroits du texte:<br>
+                        à l'endroit que l'on veut référencer: \label<br>
+                        à l'endroit où l'on veut faire référence: \ref<br>
+                    </li>
+                    <li>
+                        Barre de fraction oblique<br>
+                        \usepackage{xfrac}<br>
+                        \sfrac{1}{2}<br>
+                    </li>
+                    <li>
+                        Muli-colonnes:<br>
+                        usepackage{multicol}<br>
+                        \begin{multicols}{2}<br>
+                        ... \end{multicols}<br>
+                        Pour rompre une colonne:<br>
+                        \vfill\null<br>
+                        \columnbreak
+                    </li>
+                    <li>
+                        Lien hypertex:<br>
+                        \usepackage{hyperref}<br>
+                        \url{...}
+                    </li>
+                    <li>
+                        qrcode: attention pb avec babel<br>
+                        \usepackage{qrcode}<br>
+                        \qrcode{...}
+                    </li>
+                    <li>
+                        Gesion des marges:<br>
+                        \usepackage[hmargin=1cm,vmargin=0.25cm]{geometry}
+                    </li>
+                    <li>
+                        Pas d'espaces au début des paragraphes: \setlength{\parindent}{0pt}
+                    </li>
+                    <li>
+                        Pour tracer un courbe:<br>
+                        \usepackage{pgfplots}<br>
+                        \begin{tikzpicture}<br>
+                        \begin{axis} [axis lines=center]<br>
+                        \addplot [domain=0:21, smooth, thick] { 2*(1-exp(-x/3)) };<br>
+                        \addplot [domain=0:21] {2};<br>
+                        \end{axis}<br>
+                        \end{tikzpicture}<br>
+                    </li>
+                    <li>
+                        Pour biffer en mode mathématique:<br>
+                        \usepackage{cancel}<br>
+                        Pour biffer: \cancel{...}<br>
+                        Pour faire un croix: \xcancel{...}<br>
+                    </li>
+                    <li>
+                        Pour taper du code source:<br>
+                        \usepackage{listings}<br>
+                        \begin{lstlisting}[language=Python,basicstyle=\tiny]<br>
+                        ...<br>
+                        \end{lstlisting}<br>
+                        Juste pour un mot \verb|...|
+                    </li>
+                    <li>
+                        Multiples alignements:<br>
+                        \usepackage{amsmath}<br>
+                        \begin{alignat}{3}<br>
+                        blacla &amp; aa &amp;&amp; bb<br>
+                        ...<br>
+                        \end{alignat}<br>
+                        Attention aux alignements: rlrlrlrl...
+                    </li>
+                    <li>
+                        Lignes multiples en indices:<br>
+                        \sum_\substack{i=0 \\ i\neq 4}
+                    </li>
+                    <li>
+                        Pour les circuits électriques:<br>
+                        Exemple d'un circuit RC:<br>
+                        \usepackage[european, straightvoltages, RPvoltages]{circuitikz}<br>
+                        \begin{circuitikz}<br>
+                        \draw (0,0) to [vsource,v_=$v_e(t)$] (0,3);<br>
+                        \draw (0,3) to [R,l_=R,v^=$v_R(t)$,i_=$i(t)$] (3,3);<br>
+                        \draw (3,3) to [C,l_=C,v^=$v_C(t)$] (3,0);<br>
+                        \draw (3,0) -- (0,0);<br>
+                        \end{circuitikz}<br>
+                    </li>
+                </ul>
+            </blockquote>
+
+            <h3 id="markdown">markdown to html avec image embedded</h3>
+            <blockquote>
+                Il faut exporter d'abord le markdown en HTML.<br>
+                Ensuite on lance le serveur http dans le dossier contenant le html généré:<br>
+                python -m http.server <br>
+                Ensuite dans Firefox on enregistre le html en un html self contained avec l'extension SingleFile.
+            </blockquote>
+
+            <h3 id="matplotlib">matplotlib</h3>
+            <blockquote>
+                <ul>
+                    <li>
+                        Changer le grosseur du point avec plt.plot:<br>
+                        markersize=...
+                    </li>
+                    <li>
+                        Pas d'affichage des axes:<br>
+                        plt.axis('off')
+                    </li>
+                    <li>
+                        Texte avec rotation<br>
+                        plt.text(..., rotation=angle en degré)
+                    </li>
+                    <li>
+                        Equal aspect ration:<br>
+                        plt.axis('equal')
+                    </li>
+                    <li>
+                        export to Latex:<br>
+                        import matplotlib.pyplot as plt<br>
+                        import matplotlib<br>
+                        matplotlib.rcParams.update({<br>
                         "pgf.texsystem": "pdflatex",<br>
                         'font.family': 'serif',<br>
                         'text.usetex': True,<br>
                         'pgf.rcfonts': False,<br>
-                    })<br>
-                    Ensuite:<br>
-                    plt.savefig("circle.pgf")<br>
-                    Dans le fichier latex:<br>
-                    \usepackage{tikz}<br>
-                    \input(circle.pgf)
-                </li>
-                <li>
-                    Cercle transparent:<br>
-                    from matplotlib.colors import colorConverter<br>
-                    fc = colorConverter.to_rgba('white', alpha=0)<br>
-                    circle1 = plt.Circle((0, 0), 1, ec='k', fc=fc)<br>
-                    plt.gca().add_patch(circle1)<br>
-                </li>
-                <li>
-                    Arc de cercle:<br>
-                    import matplotlib.patches as ptch<br>
-                    angle=ptch.Arc((0,0),0.5,0.5,angle=0,theta1=0,theta2=angledeg)<br>
-                    plt.gca().add_patch(angle)<br>
-                </li>
-                <li>
-                    Une flèche en arc de cercle:<br>
-                    arrow = ptch.FancyArrowPatch( (1.2*cos(-1.0), 1.2*sin(-1.0)), (1.2*cos(-0.5), 1.2*sin(-0.5)), connectionstyle="arc3,rad=.2", arrowstyle="Simple, tail_width=0.5, head_width=4, head_length=8" )<br>
-                    plt.gca().add_patch(arrow)<br>
-                </li>
-                <li>
-                    types de lignes: ':' pour pointillés
-                </li>
-            </ul>
-        </blockquote>
-
-	<h3 id="updates"> Mis à jours </h3>
-	<blockquote>
-	    <ul>
-		<li>
-			Pour snap: snap refresh 
-		</li>
-		<li>
-			Pour flatpak: flatpak update
-		</li>
-	    </ul>
-	</blockquote>
-
-        <h3 id="vim"> vim </h3>
-        <blockquote>
-            <ul>
-                <li>
-                    Afficher les numéros de ligne: :set number
-                    Pour les enlever: :set nonumber
-                </li>
-                <li>
-                    Lancer une commande du shell: :!
-                </li>
-                <li>
-                    Lancer un explorateur de fichier: :Ex<br>
-                    Attention cela clos le split courant
-                </li>
-                <li>
-                    add line and go in insert mode: o ou O selon avant ou après la ligne courante.
-                </li>
-                <li>
-                    delete up to line number: d126G<br>
-                    indent up to line: >126G
-                </li>
-                <li>
-                    yank complet line: yy
-                </li>
-                <li>
-                    delete end of line: D
-                </li>
-                <li>
-                    Copier/couper/coller en mode visuel: y/d/p
-                </li>
-                <li>
-                    Indenter une ligne en mode commande: ><br>
-                    Indenter 5 lignes en mode commande: 5>>
-                </li>
-                <li>
-                    Aller au début du fichier: gg
-                    Aller à la fin du fichier: G
-                </li>
-                <li>
-                    Aller au dégut de la ligne: 0
-                    Aller à la fin de la ligne: $
-                </li>
-                <li>
-                    Fermer tous les splits sauf le courant: Ctrl+w puis o<br>
-                    Split vertical: Ctrl+w puis v<br>
-                    Split horizontal: Crtl+w puis s<br>
-                </li>
-            </ul>
-        </blockquote>
-
-
-
-        <h3 id="pastel"> pastel </h3>
-        <blockquote>
-            Outil pour choisir des couleurs
-            <ul>
-                <li>
-                    pastel random: choix aléatoire de couleurs
-                </li>
-            </ul>
-        </blockquote>
-
-        <h3 id="qpdf"> qpdf </h3>
-        <blockquote>
-            Outil que j'utilise pour rassembler plusieurs fichier pdf <br>
-
-            Commande: <br>
-
-            qpdf --empty --pages *.pdf -- out.pdf
-        </blockquote>
-
-        <h3 id="ranger"> ranger </h3>
-        <blockquote>
-            File explorer in terminal mode.
-            <ul>
-                <li>
-                    delete: F8
-                </li>
-                <li>
-                    mkdir: F7
-                </li>
-                <li>
-                    rename: cw
-                </li>
-                <li>
-                    Modification des associations: dans le fichier ~/.config/ranger/rifle.conf
-                </li>
-            </ul>
-        </blockquote>
-
-        <h3 id="rm">rm</h3>
-        <blockquote>
-            <ul>
-                <li>
-                    Suppression d'un dossier:<br>
-                    rm -rf dossier_a_supprimer
-                </li>
-                <li>
-                    Suppression de tous les dossiers:<br>
-                    rm -rf *
-                </li>
-            </ul>
-        </blockquote>
-
-        <h3 id="routing">Routage Linux</h3>
-        <blockquote>
-                <ul>
-                        <li>
-                                Supprimer une route par défaut:<br>
-                                sudo ip route del default via 192.168.8.1 dev wlo1<br>
-                                De manière persistante: echo "sudo ip route del default via 192.168.8.1 dev wlo1" >> /etc/rc.local
-                        </li>
-                        <li>
-                                Regarder la table de routage:<br>
-                                ip route show
-                        </li>
+                        })<br>
+                        Ensuite:<br>
+                        plt.savefig("circle.pgf")<br>
+                        Dans le fichier latex:<br>
+                        \usepackage{tikz}<br>
+                        \input(circle.pgf)
+                    </li>
+                    <li>
+                        Cercle transparent:<br>
+                        from matplotlib.colors import colorConverter<br>
+                        fc = colorConverter.to_rgba('white', alpha=0)<br>
+                        circle1 = plt.Circle((0, 0), 1, ec='k', fc=fc)<br>
+                        plt.gca().add_patch(circle1)<br>
+                    </li>
+                    <li>
+                        Arc de cercle:<br>
+                        import matplotlib.patches as ptch<br>
+                        angle=ptch.Arc((0,0),0.5,0.5,angle=0,theta1=0,theta2=angledeg)<br>
+                        plt.gca().add_patch(angle)<br>
+                    </li>
+                    <li>
+                        Une flèche en arc de cercle:<br>
+                        arrow = ptch.FancyArrowPatch( (1.2*cos(-1.0), 1.2*sin(-1.0)), (1.2*cos(-0.5), 1.2*sin(-0.5)), connectionstyle="arc3,rad=.2", arrowstyle="Simple, tail_width=0.5, head_width=4, head_length=8" )<br>
+                        plt.gca().add_patch(arrow)<br>
+                    </li>
+                    <li>
+                        types de lignes: ':' pour pointillés
+                    </li>
                 </ul>
-        </blockquote>
+            </blockquote>
 
-	<h3 id="runpod">Runpod</h3>
-	<blockquote>
-		<ul>
-			<li>
-				Se connecter sur le serveur distant: lancer le Pod puis cliquer sur Connect afin d'obtenir l'adresse IP dans le champ "SSH over exposed TCP: (Supports SCP & SFTP)". On tape alors une commande du type (ou on change l'adresse IP et le port)<br>
-				ssh root@213.173.105.82 -p 11043 -i ~/.ssh/github_gabrielSoranzoUPEC
-			</li>
-			<li>
-				Cloner le dépot git privé sur la machine distante:<br>
-				git clone https://GabrielSoranzo@github.com/...<br>
-				A ce niveau, rentrer un token
-			</li>
-			<li>
-				Se connecter sur un serveur distant dans vscode:<br>
-				Ctrl+Shif+P puis Remote-SSH: Connect to host ...<br>
-				Retaper la même commande que précédemment<br>
-				git clone https://GabrielSoranzo@github.com/
-			</li>
-		</ul>
-	</blockquote>
+            <h3 id="updates">Mis à jours</h3>
+            <blockquote>
+                <ul>
+                    <li>
+                        Pour snap: snap refresh
+                    </li>
+                    <li>
+                        Pour flatpak: flatpak update
+                    </li>
+                </ul>
+            </blockquote>
 
-        <h3 id="sage">sage</h3>
-        <blockquote>
-            <ul>
-		<li>
-		    Lancer Sage:<br>
-		    sage -n jupyter
-		</li>
-                <li>
-                    Développement de Taylor<br>
-                    Ex: taylor(sin(x),x,0,3)
-                </li>
-            </ul>
-        </blockquote>
+            <h3 id="vim">vim</h3>
+            <blockquote>
+                <ul>
+                    <li>
+                        Afficher les numéros de ligne: :set number Pour les enlever: :set nonumber
+                    </li>
+                    <li>
+                        Lancer une commande du shell: :!
+                    </li>
+                    <li>
+                        Lancer un explorateur de fichier: :Ex<br>
+                        Attention cela clos le split courant
+                    </li>
+                    <li>
+                        add line and go in insert mode: o ou O selon avant ou après la ligne courante.
+                    </li>
+                    <li>
+                        delete up to line number: d126G<br>
+                        indent up to line: &gt;126G
+                    </li>
+                    <li>
+                        yank complet line: yy
+                    </li>
+                    <li>
+                        delete end of line: D
+                    </li>
+                    <li>
+                        Copier/couper/coller en mode visuel: y/d/p
+                    </li>
+                    <li>
+                        Indenter une ligne en mode commande: &gt;<br>
+                        Indenter 5 lignes en mode commande: 5&gt;&gt;
+                    </li>
+                    <li>
+                        Aller au début du fichier: gg Aller à la fin du fichier: G
+                    </li>
+                    <li>
+                        Aller au dégut de la ligne: 0 Aller à la fin de la ligne: $
+                    </li>
+                    <li>
+                        Fermer tous les splits sauf le courant: Ctrl+w puis o<br>
+                        Split vertical: Ctrl+w puis v<br>
+                        Split horizontal: Crtl+w puis s<br>
+                    </li>
+                </ul>
+            </blockquote>
 
-        <h3 id="trans"> trans </h3>
-        <blockquote>
-            Pour traduire
-        </blockquote>
+            <h3 id="pastel">pastel</h3>
+            <blockquote>
+                Outil pour choisir des couleurs
+                <ul>
+                    <li>
+                        pastel random: choix aléatoire de couleurs
+                    </li>
+                </ul>
+            </blockquote>
 
+            <h3 id="qpdf">qpdf</h3>
+            <blockquote>
+                Outil que j'utilise pour rassembler plusieurs fichier pdf <br>
 
-        <h3 id="vimtex"> vimtex </h3>
-        <blockquote>
-            <ul>
-                <li>
-                    LaTeX clean: \lc
-                </li>
-                <li>
-                    Table of content: \lt
-                </li>
-                <li>
-                    Lancer la visualisation externe: \lv
-                </li>
-                <li>
-                    Lancer la compilation en mode continue: \ll
-                </li>
-                <li>
-                    Voir les erreurs de compilations: \le
-                </li>
-            </ul>
-        </blockquote>
+                Commande: <br>
 
-	<h3 id="virtualenv"> virtualenv </h3>
-	<blockquote>
-		<ul>
-			<li>
-				Créer un environnement virtual: virtualenv venv
-			</li>
-			<li>
-				Créer un environnement virtuel avec une version déterminée de Python: virtualenv -p /usr/bin/python2.7 venv
-			</li>
-			<li>
-				Pour utiliser l'environnement: source venv/bin/activate
-			</li>
-			<li>
-				Pour arréter d'utiliser un environnement: deactivate
-			</li>
-			<li>
-				Pour récupérer l'ensemble des bibliothèques installée: pip freeze > requirements.txt
-			</li>
-			<li>
-				Pour réinstaller les bibliothèques à partir d'un fichier: pip install -r requirements.txt
-			</li>
-			<li>
-				Ajouter un noyau Jupyter à partir d'un environnement:<br>
-				pip install --user ipykernel<br>
-				python -m ipykernel install --user --name=myenv
-			</li>
-			<li>
-				Supprimer un noyau Jupyter:<br>
-				jupyter kernelspec list<br>
-				jupyter kernelspec uninstall myenv
-			</li>
-		</ul>
-	</blockquote>
+                qpdf --empty --pages *.pdf -- out.pdf
+            </blockquote>
 
-    <h3 id="windows"> windows reinstallation </h3>
-    <blockquote>
-        <ul>
-            <li>
-                Télécharger l'image iso de windows
-            </li>
-            <li>
-                Graver l'image iso avec par exemple Gnome Disk Utility (formater la clé auparavant avec effacement des données en cas de problème)
-            </li>
-        </ul>
-    </blockquote>
+            <h3 id="ranger">ranger</h3>
+            <blockquote>
+                File explorer in terminal mode.
+                <ul>
+                    <li>
+                        delete: F8
+                    </li>
+                    <li>
+                        mkdir: F7
+                    </li>
+                    <li>
+                        rename: cw
+                    </li>
+                    <li>
+                        Modification des associations: dans le fichier ~/.config/ranger/rifle.conf
+                    </li>
+                </ul>
+            </blockquote>
 
-    <h3 id="winget"> winget </h3>
-    <blockquote>
-            <ul>
-                <li>
-                    Update all in silent:<br>
-                    winget upgrade --all -h
-                </li>
-            </ul>
-    </blockquote>
+            <h3 id="rm">rm</h3>
+            <blockquote>
+                <ul>
+                    <li>
+                        Suppression d'un dossier:<br>
+                        rm -rf dossier_a_supprimer
+                    </li>
+                    <li>
+                        Suppression de tous les dossiers:<br>
+                        rm -rf *
+                    </li>
+                </ul>
+            </blockquote>
 
-    <h3 id="wsl"> wsl </h3>
-    <blockquote>
-        <ul>
-            <li>
-                Redémmarer tous les wsl: wsl --shutdown
-            </li>
-        </ul>
-    </blockquote>
+            <h3 id="routing">Routage Linux</h3>
+            <blockquote>
+                <ul>
+                    <li>
+                        Supprimer une route par défaut:<br>
+                        sudo ip route del default via 192.168.8.1 dev wlo1<br>
+                        De manière persistante: echo "sudo ip route del default via 192.168.8.1 dev wlo1" &gt;&gt; /etc/rc.local
+                    </li>
+                    <li>
+                        Regarder la table de routage:<br>
+                        ip route show
+                    </li>
+                </ul>
+            </blockquote>
 
-	<h3 id="xinput"> xinput </h3>
-	<blockquote>
-		<ul>
-			<li>
-				Liste tous les périphériques d'entrée sur X: xinput
-			</li>
-			<li>
-				Désactive le périphérique n°13: xinput disable 13
-			</li>
-			<li>
-				Active le périphérique °13: xinputenable 13
-			</li>
-		</ul>
-	</blockquote>
+            <h3 id="runpod">Runpod</h3>
+            <blockquote>
+                <ul>
+                    <li>
+                        Se connecter sur le serveur distant: lancer le Pod puis cliquer sur Connect afin d'obtenir l'adresse IP dans le champ "SSH over exposed TCP: (Supports SCP &amp; SFTP)". On tape alors une commande du type (ou on change
+                        l'adresse IP et le port)<br>
+                        ssh root@213.173.105.82 -p 11043 -i ~/.ssh/github_gabrielSoranzoUPEC
+                    </li>
+                    <li>
+                        Cloner le dépot git privé sur la machine distante:<br>
+                        git clone https://GabrielSoranzo@github.com/...<br>
+                        A ce niveau, rentrer un token
+                    </li>
+                    <li>
+                        Se connecter sur un serveur distant dans vscode:<br>
+                        Ctrl+Shif+P puis Remote-SSH: Connect to host ...<br>
+                        Retaper la même commande que précédemment<br>
+                        git clone https://GabrielSoranzo@github.com/
+                    </li>
+                </ul>
+            </blockquote>
 
-        <h3 id="zathura"> zathura </h3>
-        <blockquote>
-            <ul>
-                <li>
-                    Inversion des couleurs: Ctrl+r
-                </li>
-            </ul>
-        </blockquote>
+            <h3 id="sage">sage</h3>
+            <blockquote>
+                <ul>
+                    <li>
+                        Lancer Sage:<br>
+                        sage -n jupyter
+                    </li>
+                    <li>
+                        Développement de Taylor<br>
+                        Ex: taylor(sin(x),x,0,3)
+                    </li>
+                </ul>
+            </blockquote>
 
+            <h3 id="trans">trans</h3>
+            <blockquote>
+                Pour traduire
+            </blockquote>
 
-	</body>
-</html>
+            <h3 id="vimtex">vimtex</h3>
+            <blockquote>
+                <ul>
+                    <li>
+                        LaTeX clean: \lc
+                    </li>
+                    <li>
+                        Table of content: \lt
+                    </li>
+                    <li>
+                        Lancer la visualisation externe: \lv
+                    </li>
+                    <li>
+                        Lancer la compilation en mode continue: \ll
+                    </li>
+                    <li>
+                        Voir les erreurs de compilations: \le
+                    </li>
+                </ul>
+            </blockquote>
+
+            <h3 id="virtualenv">virtualenv</h3>
+            <blockquote>
+                <ul>
+                    <li>
+                        Créer un environnement virtual: virtualenv venv
+                    </li>
+                    <li>
+                        Créer un environnement virtuel avec une version déterminée de Python: virtualenv -p /usr/bin/python2.7 venv
+                    </li>
+                    <li>
+                        Pour utiliser l'environnement: source venv/bin/activate
+                    </li>
+                    <li>
+                        Pour arréter d'utiliser un environnement: deactivate
+                    </li>
+                    <li>
+                        Pour récupérer l'ensemble des bibliothèques installée: pip freeze &gt; requirements.txt
+                    </li>
+                    <li>
+                        Pour réinstaller les bibliothèques à partir d'un fichier: pip install -r requirements.txt
+                    </li>
+                    <li>
+                        Ajouter un noyau Jupyter à partir d'un environnement:<br>
+                        pip install --user ipykernel<br>
+                        python -m ipykernel install --user --name=myenv
+                    </li>
+                    <li>
+                        Supprimer un noyau Jupyter:<br>
+                        jupyter kernelspec list<br>
+                        jupyter kernelspec uninstall myenv
+                    </li>
+                </ul>
+            </blockquote>
+
+            <h3 id="windows">windows reinstallation</h3>
+            <blockquote>
+                <ul>
+                    <li>
+                        Télécharger l'image iso de windows
+                    </li>
+                    <li>
+                        Graver l'image iso avec par exemple Gnome Disk Utility (formater la clé auparavant avec effacement des données en cas de problème)
+                    </li>
+                </ul>
+            </blockquote>
+
+            <h3 id="winget">winget</h3>
+            <blockquote>
+                <ul>
+                    <li>
+                        Update all in silent:<br>
+                        winget upgrade --all -h
+                    </li>
+                </ul>
+            </blockquote>
+
+            <h3 id="wsl">wsl</h3>
+            <blockquote>
+                <ul>
+                    <li>
+                        Redémmarer tous les wsl: wsl --shutdown
+                    </li>
+                </ul>
+            </blockquote>
+
+            <h3 id="xinput">xinput</h3>
+            <blockquote>
+                <ul>
+                    <li>
+                        Liste tous les périphériques d'entrée sur X: xinput
+                    </li>
+                    <li>
+                        Désactive le périphérique n°13: xinput disable 13
+                    </li>
+                    <li>
+                        Active le périphérique °13: xinputenable 13
+                    </li>
+                </ul>
+            </blockquote>
+
+            <h3 id="zathura">zathura</h3>
+            <blockquote>
+                <ul>
+                    <li>
+                        Inversion des couleurs: Ctrl+r
+                    </li>
+                </ul>
+            </blockquote>
+        </div>
+
+        <div id="modif" class="form-container">
+            <h2>Ajouter une nouvelle commande</h2>
+            <div class="form-group">
+                <label for="category">Catégorie :</label>
+                <input type="text" id="category" placeholder="Ex: git, vim, etc.">
+            </div>
+            <div class="form-group">
+                <label for="content">Contenu :</label>
+                <textarea id="content" placeholder="Décrivez la commande ou l'astuce..."></textarea>
+            </div>
+            <button onclick="addCommand()">Ajouter</button>
+            <button class="save-button" onclick="saveHTML()">💾 Télécharger HTML</button>
+        </div>
+
+        <script>
+            function addCommand() {
+                const categoryInput = document.getElementById("category");
+                const contentInput = document.getElementById("content");
+
+                const category = categoryInput.value.trim();
+                const content = contentInput.value.trim();
+
+                if (!category || !content) {
+                    alert("Veuillez remplir les deux champs");
+                    return;
+                }
+
+                const categoryId = category.toLowerCase().replace(/\s+/g, "-");
+                let existingSection = document.getElementById(categoryId);
+
+                if (existingSection) {
+                    // La catégorie existe, ajouter le contenu
+                    const ul = existingSection.nextElementSibling.querySelector("ul");
+                    const li = document.createElement("li");
+                    li.innerHTML = content.replace(/\n/g, "<br>");
+                    ul.appendChild(li);
+                } else {
+                    // Nouvelle catégorie
+                    const contentContainer = document.getElementById("content-container");
+
+                    // Créer la nouvelle section
+                    const h3 = document.createElement("h3");
+                    h3.id = categoryId;
+                    h3.textContent = category;
+
+                    const blockquote = document.createElement("blockquote");
+                    const ul = document.createElement("ul");
+                    const li = document.createElement("li");
+                    li.innerHTML = content.replace(/\n/g, "<br>");
+
+                    ul.appendChild(li);
+                    blockquote.appendChild(ul);
+
+                    contentContainer.appendChild(h3);
+                    contentContainer.appendChild(blockquote);
+
+                    // Ajouter au menu de navigation
+                    const navList = document.getElementById("nav-list");
+                    const navLi = document.createElement("li");
+                    const navA = document.createElement("a");
+                    navA.href = "#" + categoryId;
+                    navA.textContent = category;
+                    navLi.appendChild(navA);
+                    navList.appendChild(navLi);
+                }
+
+                // Vider les champs
+                categoryInput.value = "";
+                contentInput.value = "";
+
+                alert("Commande ajoutée avec succès !");
+            }
+
+            function saveHTML() {
+                const htmlContent = document.documentElement.outerHTML;
+                const blob = new Blob([htmlContent], { type: "text/html" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = "help_page_with_form.html";
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }
+
+            // Permettre l'ajout avec Entrée dans le champ contenu
+            document.getElementById("content").addEventListener("keydown", function (e) {
+                if (e.ctrlKey && e.key === "Enter") {
+                    addCommand();
+                }
+            });
+        </script>
+    
+
+</body></html>
